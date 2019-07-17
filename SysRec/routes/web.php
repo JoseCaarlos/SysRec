@@ -11,16 +11,21 @@
 |
 */
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get("/produto", "HomeController@produto")->name("produto");
 
 Route::get("/produtoDetalhe", "HomeController@produtoDetalhe")->name("produtoDetalhe");
+
+Route::get("/sobre", "HomeController@about")->name("about");
+
+Route::get("/contato","HomeController@contact")->name("contact");
+
+Route::get("/carrinho","HomeController@cart")->name("cart");
+
+Route::get("/cliente","HomeController@client")->name("client");
+
+Route::get("/registrar","HomeController@register")->name("register");
 
 Route::get('/graph', function () {
 

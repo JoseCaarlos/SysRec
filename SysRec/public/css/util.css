@@ -3180,6 +3180,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	font-family: Montserrat-Regular;
 	font-size: 18px;
 	color: white;
+	text-shadow: black 0.1em 0.1em 0.2em;
 	line-height: 1.5;
 	letter-spacing: 2px;
 }
@@ -3400,6 +3401,7 @@ TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT TEXT
 	font-family: Poppins-Bold;
 	font-size: 60px;
 	color: white;
+	text-shadow: black 0.1em 0.1em 0.2em;
 	line-height: 1.2;
 	letter-spacing: 3px;
 	text-transform: uppercase;
