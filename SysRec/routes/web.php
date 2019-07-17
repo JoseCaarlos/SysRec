@@ -16,12 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/teste', 'PagesController@inde');
-
-Route::get('/amigos', 'PagesController@amigos');
-
-Route::get('/sobre', 'PagesController@sobre');
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get("/produto", "HomeController@produto")->name("produto");
