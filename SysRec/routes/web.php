@@ -27,6 +27,8 @@ Route::get("/cliente","HomeController@client")->name("client");
 
 Route::get("/registrar","HomeController@register")->name("register");
 
+Route::post("/registrarCliente","ClientController@register")->name("clientRegister");
+
 Route::get('/graph', function () {
 
     $prop = ([
