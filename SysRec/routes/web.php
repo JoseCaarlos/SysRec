@@ -29,12 +29,42 @@ Route::get("/registrar","HomeController@register")->name("register");
 
 Route::get('/graph', function () {
 
-    $neo4j = Neo4j::Conectar();
-    $query = 'MATCH (m:Supplier) RETURN m.contactName,m.address';
-    $result = $neo4j->run($query);
-    foreach ($result->getRecords() as $record) {
-        // echo printf('Person name is : %s');
-        print_r($record->value('m.contactName'). "<br>" . $record->value('m.address') . "<br><br>");
+    $prop = ([
+        'infos' => ['name' => 'S7', 'Price' => 3600.00]
+     ]);
+     
+    $prop2 = ([
+        'infos' => ['name' => 'Jose', 'age' => 18]
+     ]);
+     $where = ([
+        'Node' => 'Cliente',
+        'Id' => 'teste',
+        'NodeTwo' => 'Produto',
+        'IdTwo' => 'Iphone 7',
+        'Rel' => 'COMPROU'
+
+     ]);
+
+     $recom = ([
+        'Node' => 'Cliente',
+        'Id' => 'Elias',
+     ]);
+
+     $node = ([
+        'Node' => 'Cliente',
+        'Id' => 'teste',
+     ]);
+    //$r = Neo4j::createNodeProperty("Produto",$prop);
+    //$s = Neo4j::createNodeProperty("Cliente",$prop2);
+    //$c = Neo4j::createRelationship($where);
+    //$c = Neo4j::collaborativeFiltration($recom);
+    $c = Neo4j::deleteNode($node,True);
+    // $neo4j = Neo4j::conectar();
+    // $query = 'MATCH (m:Client) RETURN m.name';
+    // $result = $neo4j->run($query);
+    foreach ($c->getRecords() as $record) {
+        print_r($record->value('k.name'));
+        echo"<br>";
     }
     return null;
 });
