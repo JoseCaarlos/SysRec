@@ -12,7 +12,7 @@ class Neo4j
          *
          */ 
         $neo4j = ClientBuilder::create()
-            ->addConnection('http', 'http://neo4j:1234@localhost:11008')
+            ->addConnection('http', 'http://neo4j:1234@localhost:7474')
             ->build();
 
         return $neo4j;
