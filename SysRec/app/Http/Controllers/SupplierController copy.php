@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Client;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 
-class ClientController extends Controller
+class SupplierController extends Controller
 {
     public function index()
     {
@@ -15,17 +15,11 @@ class ClientController extends Controller
 	{
 
 		$data = ([
-			'infos' => [ 'first_name' => $request->get("first_name"),
-						 'last_name' => $request->get("last_name"),
-						 'gender' => $request->get("gender"),
+			'infos' => [ 'name' => $request->get("name"),
+						 'cnpj' => $request->get("cnpj"),
 						 'phone_number' => $request->get("phone_number"),
 						 'telephone' => $request->get("telephone"),
-						 'email' => $request->get("email"),						 
-						 'cpf' => $request->get("cpf"),
-						 'rg' => $request->get("rg"),		
-						 'password' => $request->get("password"),
-						 'confirm_password' => $request->get("confirm_password"),
-						 'birth_date' => $request->get("birth_date"),	
+						 'email' => $request->get("email"),	
 						 'postal_code' => $request->get("postal_code"),
 						 'street' => $request->get("street"),
 						 'street_number' => $request->get("street_number"),
@@ -35,7 +29,7 @@ class ClientController extends Controller
 						 'complement' => $request->get("complement"),
 					   ]
 		 ]);
-		 Client::createNodeProperty("Client",$data);
+		 Supplier::createNodeProperty("Supplier",$data);
 		
 		return $data;	
 	}

@@ -12,12 +12,12 @@ class Neo4j
          *
          */ 
         $neo4j = ClientBuilder::create()
-            ->addConnection('http', 'http://neo4j:1234@localhost:7474')
+            ->addConnection('http', 'http://neo4j:1234@localhost:11008')
             ->build();
 
         return $neo4j;
     }
-
+    
     //Cria um node Vazio
     public static function createNodeEmpty($name){
         Neo4j::conectar()->run('CREATE (n:'.$name.')');
@@ -29,17 +29,18 @@ class Neo4j
     }
 
     //Criando relacionamento com os nodes
-    public static function createRelationship($nodeStart){
-        $result = Neo4j::conectar()->run('MATCH (m:'.$nodeStart['Node'].'{name:"'.$nodeStart['Id'].'"}),
-                                         (n:'.$nodeStart['NodeTwo'].'{name:"'.$nodeStart['IdTwo'].'"})
-                                         CREATE (m)-[r:'.$nodeStart['Rel'].']->(n)
+    public static function createRelationship($node){
+        $result = Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"}),
+                                         (n:'.$node['NodeTwo'].')
+                                         WHERE ID(n)='.$node['nodeTwo'].'
+                                         CREATE (m)-[r:'.$node['Rel'].']->(n)
                                          RETURN m,n,r');
         return $result;
     }
     //Recomendação baseado em algum cliente passado
     public static function collaborativeFiltration($node){
-        $result = Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"})-[:COMPROU]->()<-[:COMPROU]-(n:Cliente),
-                                         (n:Cliente)-[:COMPROU]->(k)
+        $result = Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"})-[:PURCHASED]->()<-[:PURCHASED]-(n:Client),
+                                         (n:Client)-[:PURSHASED]->(k)
                                          RETURN  k.name');
         return $result;
     }
@@ -49,6 +50,7 @@ class Neo4j
         Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"}) 
                                '.$detach.' DELETE m');
     }
+
 
 }
 
