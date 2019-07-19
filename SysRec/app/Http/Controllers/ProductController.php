@@ -27,18 +27,11 @@ class ProductController extends Controller
 						 'sac' => $request->get("sac")
 					   ]
 		]);
-		Product::createNodeProperty("Product",$data);
-		
-		$where = ([
-			'Node' => 'Cliente',
-			'Id' => 'teste',
-			'NodeTwo' => 'Produto',
-			'IdTwo' => 'Iphone 7',
-			'Rel' => 'COMPROU'
-	
-		 ]);
-	
-
+		$rel = ([
+			'idOne' => $request->get("category_id"),
+			'idTwo' => $request->get("supplier_id"),
+			 ]);
+		Product::createNodeProductPropertyProperty("Product",$data,$rel);
 
 		return $data;	
 	}
