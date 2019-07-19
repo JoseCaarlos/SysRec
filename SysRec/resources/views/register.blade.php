@@ -1,107 +1,159 @@
 @extends('layouts.app')
 @section('conteudo')
-<body class="animsition">
 
-<!-- content page -->
-<section class="bgwhite p-t-66 p-b-60">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-6 p-b-30">
-					<form class="leave-comment" method="POST" action="{{ route('clientRegister') }}">
-					@csrf
-						<h4 class="m-text26 p-b-36 p-t-15">
-							Registre-se
-						</h4>
-						<p>Dados Pessoais</p> 
-						<br>
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="first_name" placeholder="Primeiro Nome">
-						</div>
+	<body class="animsition">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="{{ URL::asset('js/client-register.js') }}"></script>
+	<!-- content page -->
+	<section class="bgwhite p-t-66 p-b-60">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 p-b-30">
+						<form id="register_form" class="leave-comment" method="POST" action="{{ route('clientRegister') }}">
+						@csrf
+							<h4 class="m-text26 p-b-36 p-t-15">
+								Registre-se
+							</h4>
+							<p>Dados Pessoais</p> 
+							<br>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="last_name" placeholder="Sobrenome">
-						</div>
+							<!-- Nome -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="first_name" placeholder="Primeiro Nome">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<select class="sizefull s-text7 p-l-22 p-r-22" name="gender">
-								<option value="m">Masculino</option>
-    							<option value="w">Feminino</option>
-							</select>
-						</div>
+							<!-- Sobrenome -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="last_name" placeholder="Sobrenome">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone_number" placeholder="Telefone Celular">
-						</div>
+							<!-- Gênero -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" name="gender">
+									<option value="" selected disabled hidden>Sexo</option>
+									<option value="m">Masculino</option>
+									<option value="w">Feminino</option>
+								</select>
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="telephone" placeholder="Telefone Residencial">
-						</div>
+							<!-- Telefone Celular -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone_number" placeholder="Telefone Celular">
+							</div>
+							
+							<!-- Telefone -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="telephone" placeholder="Telefone Residencial">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="E-mail">
-						</div>
+							<!-- E-Mail -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="email" name="email" placeholder="E-mail">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="cpf" placeholder="CPF">
-						</div>
+							<!-- C.P.F -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="cpf" placeholder="CPF">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="rg" placeholder="RG">
-						</div>
+							<!-- RG -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="rg" placeholder="RG">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="password" placeholder="Senha">
-						</div>
+							<!-- Senha -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" id="password" type="password" name="password" placeholder="Senha">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="password" name="confirm_password" placeholder="Confirmar Senha">
-						</div>
+							<!-- Confirmar Senha -->
+							<p id='message'></p>
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" id="confirm_password" type="password" name="confirm_password" placeholder="Confirmar Senha">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birth_date" placeholder="Aniversário">
-						</div>
+							<!-- Data do Aniversário -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="date" name="birth_date" placeholder="Aniversário">
+							</div>
 
-						<p>Dados para Entrega</p>
+							<p>Dados para Entrega</p>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="postal_code" placeholder="CEP">
-						</div>
+							<!-- CEP -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="postal_code" placeholder="CEP">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="street" placeholder="Rua">
-						</div>
+							<!-- Rua -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="street" placeholder="Rua">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="street_number" placeholder="Número da Rua">
-						</div>
+							<!-- Número da Rua -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="street_number" placeholder="Número da Rua">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="neighborhood" placeholder="Bairro">
-						</div>
+							<!-- Bairro -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="neighborhood" placeholder="Bairro">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="city" placeholder="Cidade">
-						</div>
+							<!-- Cidade -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="city" placeholder="Cidade">
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="state" placeholder="Estado">
-						</div>
+							<!-- Estado -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<select class="sizefull s-text7 p-l-22 p-r-22" name="state">
+									<option value="" selected disabled hidden>Escolha um estado</option>
+									<option value="AC">Acre</option>
+									<option value="AL">Alagoas</option>
+									<option value="AP">Amapá</option>
+									<option value="AM">Amazonas</option>
+									<option value="BA">Bahia</option>
+									<option value="CE">Ceará</option>
+									<option value="DF">Distrito Federal</option>
+									<option value="ES">Espírito Santo</option>
+									<option value="GO">Goiás</option>
+									<option value="MA">Maranhão</option>
+									<option value="MT">Mato Grosso</option>
+									<option value="MS">Mato Grosso do Sul</option>
+									<option value="MG">Minas Gerais</option>
+									<option value="PA">Pará</option>
+									<option value="PB">Paraíba</option>
+									<option value="PR">Paraná</option>
+									<option value="PE">Pernambuco</option>
+									<option value="PI">Piauí</option>
+									<option value="RJ">Rio de Janeiro</option>
+									<option value="RN">Rio Grande do Norte</option>
+									<option value="RS">Rio Grande do Sul</option>
+									<option value="RO">Rondônia</option>
+									<option value="RR">Roraima</option>
+									<option value="SC">Santa Catarina</option>
+									<option value="SP">São Paulo</option>
+									<option value="SE">Sergipe</option>
+									<option value="TO">Tocantins</option>
+								</select>
+							</div>
 
-						<div class="bo4 of-hidden size15 m-b-20">
-							<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="complement" placeholder="Complemento">
-						</div>
+							<!-- Complemento -->
+							<div class="bo4 of-hidden size15 m-b-20">
+								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="complement" placeholder="Complemento">
+							</div>
 
-						<div class="w-size25">
-							<!-- Button -->
-							<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
-								Registrar
-							</button>
-						</div>
-						
-					</form>
+							<div class="w-size25">
+								<!-- Button -->
+								<button class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4">
+									Registrar
+								</button>
+							</div>
+							
+						</form>
+					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-</body>
-@endsection
+		</section>
+	</body>
+	@endsection

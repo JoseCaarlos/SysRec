@@ -12,6 +12,7 @@
 	<section class="bgwhite p-t-66 p-b-60 ">
 		<div class="container">
 			<div class="row">
+			
 				<div class="col-md-6 p-b-30">
 					<div class="p-r-20 p-r-0-lg">
 						<div class="contact-map size21" id="google_map" data-map-x="40.614439" data-map-y="-73.926781" data-pin="images/icons/icon-position-map.png" data-scrollwhell="0" data-draggable="1"></div>
@@ -49,7 +50,7 @@
 			</div>
 		</div>
 	</section>
-
+	@endsection
 	<!-- Back to top -->
 	<div class="btn-back-to-top bg0-hov" id="myBtn">
 		<span class="symbol-btn-back-to-top">
@@ -90,4 +91,4 @@
 	<script src="js/main.js"></script>
 
 
-@endsection
+
