@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Home</title>
+	<title>Loja - Home</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -48,13 +48,11 @@
 				<div class="topbar-social">
 					<a href="#" class="topbar-social-item fa fa-facebook"></a>
 					<a href="#" class="topbar-social-item fa fa-instagram"></a>
-					<a href="#" class="topbar-social-item fa fa-pinterest-p"></a>
-					<a href="#" class="topbar-social-item fa fa-snapchat-ghost"></a>
 					<a href="#" class="topbar-social-item fa fa-youtube-play"></a>
 				</div>
 
 				<span class="topbar-child1">
-					Free shipping for standard order over $100
+					Desconto de 7% em compras acima de R$ 100,00
 				</span>
 
 				<div class="topbar-child2">
@@ -77,9 +75,10 @@
 							<li>
 								<a href="index.html">Categorias</a>
 								<ul class="sub_menu">
-									<li><a href="index.html">Homepage V1</a></li>
-									<li><a href="home-02.html">Homepage V2</a></li>
-									<li><a href="home-03.html">Homepage V3</a></li>
+									<li><a href="index.html">Homens</a></li>
+									<li><a href="home-02.html">Mulheres</a></li>
+									<li><a href="home-03.html">Roupas</a></li>
+									<li><a href="home-03.html">Óculos</a></li>
 								</ul>
 							</li>
 
@@ -173,14 +172,14 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="{{ route('cart') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="{{ route('cart') }}" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
 										Ver carrinho
 									</a>
 								</div>
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="#" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
 										Finalizar
 									</a>
 								</div>
@@ -271,14 +270,14 @@
 							<div class="header-cart-buttons">
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="{{ route('cart') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="{{ route('cart') }}" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
 										Ver Carrinho
 									</a>
 								</div>
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="{{ route('home') }}" class="flex-c-m size1 bg1 bo-rad-20 hov1 s-text1 trans-0-4">
+									<a href="{{ route('home') }}" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
 										Finalizar
 									</a>
 								</div>
