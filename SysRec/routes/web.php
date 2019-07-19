@@ -29,6 +29,13 @@ Route::get("/registrar","HomeController@register")->name("register");
 
 Route::post("/registrarCliente","ClientController@register")->name("clientRegister");
 
+// Rota Fornecedor
+Route::get("/registrarFornecedor","HomeController@supplier")->name("supplier");
+
+Route::post("/registrarFornecedor_C","SupplierController@register")->name("supplierRegister");
+
+
+
 
 // Rota administrativa
 Route::get("/admin","AdminController@index")->name("admin");
@@ -36,6 +43,8 @@ Route::get("/admin","AdminController@index")->name("admin");
 Route::any("/painelAdmin","AdminController@autenticar")->name("adminPanel");
 
 Route::get("/sairAdmin","AdminController@logout")->name("logout");
+
+
 
 
 Route::get('/graph', function () {

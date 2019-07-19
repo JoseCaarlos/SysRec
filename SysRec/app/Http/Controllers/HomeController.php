@@ -46,4 +46,11 @@ class HomeController extends Controller
         return view('register');
     }
 
+    public function supplier()
+    {
+        return view('supplier');
+    }
+
+    
+
 }
