@@ -12,23 +12,23 @@ class Neo4j
          *
          */ 
         $neo4j = ClientBuilder::create()
-            ->addConnection('http', 'http://neo4j:1234@localhost:11008')
+            ->addConnection('http', 'http://neo4j:1234@localhost:7474')
             ->build();
 
         return $neo4j;
     }
     
-    //Cria um node Vazio
+    // Cria um node Vazio
     public static function createNodeEmpty($name){
         Neo4j::conectar()->run('CREATE (n:'.$name.')');
     }
 
-    //Cria um node com suas propriedades
+    // Cria um node com suas propriedades
     public static function createNodeProperty($node,$property){
         Neo4j::conectar()->run('CREATE (n:'.$node.') SET n += {infos}', $property);
     }
 
-    //Criando relacionamento com os nodes
+    // Criando relacionamento com os nodes
     public static function createRelationship($node){
         $result = Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"}),
                                          (n:'.$node['NodeTwo'].')
@@ -37,14 +37,16 @@ class Neo4j
                                          RETURN m,n,r');
         return $result;
     }
-    //Recomendação baseado em algum cliente passado
+
+    // Recomendação baseado em algum cliente passado
     public static function collaborativeFiltration($node){
         $result = Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"})-[:PURCHASED]->()<-[:PURCHASED]-(n:Client),
                                          (n:Client)-[:PURSHASED]->(k)
                                          RETURN  k.name');
         return $result;
     }
-    //Deleção de algum node, caso queira apagar os relacionamentos passa-se 2 param como True.
+    
+    // Deleção de algum node, caso queira apagar os relacionamentos passa-se 2 param como True.
     public static function deleteNode($node,$bool){
         $detach = $bool ? "DETACH": "";
         Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"}) 
