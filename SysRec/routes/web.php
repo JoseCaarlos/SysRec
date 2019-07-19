@@ -30,6 +30,14 @@ Route::get("/registrar","HomeController@register")->name("register");
 Route::post("/registrarCliente","ClientController@register")->name("clientRegister");
 
 
+// Rota administrativa
+Route::get("/admin","AdminController@index")->name("admin");
+
+Route::any("/painelAdmin","AdminController@autenticar")->name("adminPanel");
+
+Route::get("/sairAdmin","AdminController@logout")->name("logout");
+
+
 Route::get('/graph', function () {
 
     $prop = ([
