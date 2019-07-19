@@ -12,7 +12,7 @@ class Neo4j
          *
          */ 
         $neo4j = ClientBuilder::create()
-            ->addConnection('http', 'http://neo4j:1234@localhost:7474')
+            ->addConnection('http', 'http://neo4j:1234@localhost:11008')
             ->build();
 
         return $neo4j;
@@ -53,6 +53,18 @@ class Neo4j
                                '.$detach.' DELETE m');
     }
 
+    public static function createNodeProductProperty($node,$property,$rel){
+        Neo4j::conectar()->run('CREATE (n:'.$node.') SET n += {infos}
+                                WITH n
+                                MATCH(m:Category)
+                                WHERE ID(m) = '.$rel['idOne'].'
+                                CREATE (n)-[:PART_OF]->(m)
+                                with n
+                                MATCH(s:supplier)
+                                WHERE ID(s) = '.$rel['idTwo'].'
+                                CREATE (n)<-[:SUPPLIES]-(s)
+                                RETURN *', $property);
+    }
 
 }
 
