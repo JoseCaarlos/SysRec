@@ -29,7 +29,12 @@ class AdminController extends Controller
 
 		if($auth->autenticar($u, $p) OR isAdmin() == true)
 		{
-			$request->session()->put('admin', true);
+			/* Carrega Sessão Admin e Nome de Usuário */
+			if(isset($u))
+			{
+				$request->session()->put('admin', true);
+				$request->session()->put('user', $u);
+			}			
 			return view('adminPanel');
 		}
 		else 

@@ -21,6 +21,8 @@ class CategoryController extends Controller
 		$data = ([
 			'infos' => [
 				'name' => $request->get("name"),
+				'user' => userSession(),
+				'create_date' => date("Y-m-d H:i:s"),
 			]
 		]);
 		Category::createNodeProperty("Category", $data);
