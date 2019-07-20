@@ -35,5 +35,12 @@ class ProductController extends Controller
 
 		return $data;	
 	}
+	public function product()
+    {   
+        $data['data'] = Product::matchNode("Supplier");
+
+        return view('registerProduct', compact('data'));
+    }
+
 
 }

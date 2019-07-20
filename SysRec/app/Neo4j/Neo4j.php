@@ -22,6 +22,10 @@ class Neo4j
     public static function createNodeEmpty($name){
         Neo4j::conectar()->run('CREATE (n:'.$name.')');
     }
+    // Seleciona Node 
+    public static function matchNode($name){
+        Neo4j::conectar()->run('MATCH (n:'.$name.') return n');
+}
 
     // Cria um node com suas propriedades
     public static function createNodeProperty($node,$property){

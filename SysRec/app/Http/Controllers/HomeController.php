@@ -51,6 +51,10 @@ class HomeController extends Controller
         return view('supplier');
     }
 
-    
+    public function category()
+    {
+        return view('category');
+    }
 
+   
 }

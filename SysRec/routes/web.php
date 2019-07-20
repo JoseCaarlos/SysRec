@@ -1,4 +1,5 @@
 <?php
+use App\Neo4j\Neo4j;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,16 @@ Route::get("/registrarFornecedor","HomeController@supplier")->name("supplier");
 
 Route::post("/registrarFornecedor_C","SupplierController@register")->name("supplierRegister");
 
+// Rota Categoria
+Route::get("/registrarCategoria","HomeController@category")->name("category");
+
+Route::post("/registrarCategoria_C","CategoryController@register")->name("categoryRegister");
+
+// Rota Produtos
+Route::get("/registrarProdutos","ProductController@product")->name("product");
+
+Route::post("/registrarProduct_C","RegisterController@register")->name("productRegister");
+
 
 
 
@@ -47,69 +58,74 @@ Route::get("/sairAdmin","AdminController@logout")->name("logout");
 
 
 
-Route::get('/graph', function () {
+ Route::get('/graph', function () {
 
-    $prop = ([
-        'infos' => ['name' => 'Geladeira', 'Price' => 4000.00]
-     ]);
+//     $prop = ([
+//         'infos' => ['name' => 'Geladeira', 'Price' => 4000.00]
+//      ]);
      
-   //  $prop2 = ([
-   //      'infos' => ['first_name' => $request->get("first_name"),
-   //                   'last_name' => $request->get("last_name"),
-   //                   'cpf' => $request->get("cpf"),
-   //                   'rg' => $request->get("rg"),
-   //                   'sex' => $request->get("sex"),
-   //                   'telephone' => $request->get("telephone"),
-   //                   'phone_number' => $request->get("phone_numbere"),
-   //                   'birth_date' => $request->get("birth_date"),
-   //                   'state' => $request->get("state"),
-   //                   'city' => $request->get("city"),
-   //                   'postal_code' => $request->get("postal_code"),
-   //                   'street' => $request->get("street"),
-   //                   'street_number' => $request->get("street_number"),
-   //                   'complement' => $request->get("complement"),
-   //                   'email' => $request->get("email"),
-   //                   ]
-   //   ]);
+//    //  $prop2 = ([
+//    //      'infos' => ['first_name' => $request->get("first_name"),
+//    //                   'last_name' => $request->get("last_name"),
+//    //                   'cpf' => $request->get("cpf"),
+//    //                   'rg' => $request->get("rg"),
+//    //                   'sex' => $request->get("sex"),
+//    //                   'telephone' => $request->get("telephone"),
+//    //                   'phone_number' => $request->get("phone_numbere"),
+//    //                   'birth_date' => $request->get("birth_date"),
+//    //                   'state' => $request->get("state"),
+//    //                   'city' => $request->get("city"),
+//    //                   'postal_code' => $request->get("postal_code"),
+//    //                   'street' => $request->get("street"),
+//    //                   'street_number' => $request->get("street_number"),
+//    //                   'complement' => $request->get("complement"),
+//    //                   'email' => $request->get("email"),
+//    //                   ]
+//    //   ]);
 
-     //name, cpf, rg, sex, telephone, phone_number,date_birth, address (o endereço deve conter: state, city, postal_code, street , street_number, complement), email.
-     $where = ([
-        'Node' => 'Cliente',
-        'Id' => 'teste',
-        'NodeTwo' => 'Produto',
-        'IdTwo' => 'Iphone 7',
-        'Rel' => 'COMPROU'
+//      //name, cpf, rg, sex, telephone, phone_number,date_birth, address (o endereço deve conter: state, city, postal_code, street , street_number, complement), email.
+//      $where = ([
+//         'Node' => 'Cliente',
+//         'Id' => 'teste',
+//         'NodeTwo' => 'Produto',
+//         'IdTwo' => 'Iphone 7',
+//         'Rel' => 'COMPROU'
 
-     ]);
+//      ]);
 
-     $recom = ([
-        'Node' => 'Cliente',
-        'Id' => 'Elias',
-     ]);
+//      $recom = ([
+//         'Node' => 'Cliente',
+//         'Id' => 'Elias',
+//      ]);
 
-     $node = ([
-        'Node' => 'Cliente',
-        'Id' => 'teste',
-     ]);
+//      $node = ([
+//         'Node' => 'Cliente',
+//         'Id' => 'teste',
+//      ]);
 
-     $rel = ([
-      'idOne' => '160',
-      'idTwo' => '162',
-       ]);
+//      $rel = ([
+//       'idOne' => '160',
+//       'idTwo' => '162',
+//        ]);
 
-    //$r = Neo4j::createNodeProperty("Produto",$prop);
-      $s = Neo4j::createNodeProductProperty("Product",$prop,$rel);
-    //$c = Neo4j::createRelationship($where);
-    //$c = Neo4j::collaborativeFiltration($recom);
-    //$c = Neo4j::deleteNode($node,True);
-      // $neo4j = Neo4j::conectar();
-      // $query = 'MATCH (m:Cliente) RETURN m,m.name as name';
+//     //$r = Neo4j::createNodeProperty("Produto",$prop);
+//       $s = Neo4j::createNodeProductProperty("Product",$prop,$rel);
+//     //$c = Neo4j::createRelationship($where);
+//     //$c = Neo4j::collaborativeFiltration($recom);
+//     //$c = Neo4j::deleteNode($node,True);
+//       // $neo4j = Neo4j::conectar();
+//       // $query = 'MATCH (m:Cliente) RETURN m,m.name as name';
       // $c = $neo4j->run($query);
-      foreach ($c->getRecords() as $record) {
-         print_r($record->get('m'));
-         echo $record->value('name') . PHP_EOL;
+      $c = Neo4j::matchNode("Supplier");
+      var_dump($c);
+      // foreach ($c->getRecord() as $record) {
 
-         echo"<br>";
-      }
-      return null;
+      //    print_r($record->get('n'));
+      //    echo $record->value('n.name') . PHP_EOL;
+
+      //    echo"<br>";
+      // }
+      return $c;
 });
+
+
