@@ -15,9 +15,9 @@ class ProductController extends Controller
 	{
 
 		$data = ([
-			'infos' => [ 'category_id' => $request->get("category_id"),
+			'infos' => [ 'name' => $request->get("name"),
+						 'category_id' => $request->get("category_id"),
 						 'supplier_id' => $request->get("supplier_id"),
-						 'name' => $request->get("name"),
 						 'price' => $request->get("price"),
 						 'describ' => $request->get("describ"),
 						 'height' => $request->get("height"),
@@ -37,9 +37,19 @@ class ProductController extends Controller
 	}
 	public function product()
     {   
-        $data['data'] = Product::matchNode("Supplier");
+		$strSup = "";
+		$dataSup = Product::matchNode("Supplier");
+		foreach($dataSup->getrecords() as $r):
+			$strSup .= "\n\t\t\t\t\t\t\t\t<option value='".$r->value('id')."'>".$r->value('name')."</option>";
+		endforeach;
+	   
+	   	$strCat = "";
+	   	$dataCat = Product::matchNode("Category");
+	   	foreach($dataCat->getrecords() as $r):
+			$strCat .= "\n\t\t\t\t\t\t\t\t<option value='".$r->value('id')."'>".$r->value('name')."</option>";
+	   	endforeach;
 
-        return view('registerProduct', compact('data'));
+        return view('registerProduct', compact('strCat','strSup'));
     }
 
 

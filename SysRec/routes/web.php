@@ -116,16 +116,26 @@ Route::get("/sairAdmin","AdminController@logout")->name("logout");
 //       // $neo4j = Neo4j::conectar();
 //       // $query = 'MATCH (m:Cliente) RETURN m,m.name as name';
       // $c = $neo4j->run($query);
-      $c = Neo4j::matchNode("Supplier");
-      var_dump($c);
-      // foreach ($c->getRecord() as $record) {
+      $data = Neo4j::matchNode("supplier");
+        foreach ($data as $record)
+        {
+            $id[] = $record->value('id'). PHP_EOL;
+            $name[] = $record->value('name') . PHP_EOL;
+      echo"<br>";
+        }
 
-      //    print_r($record->get('n'));
-      //    echo $record->value('n.name') . PHP_EOL;
+        print_r($name);
+        echo"<br>";
 
-      //    echo"<br>";
-      // }
-      return $c;
+        $arr = array(
+            'id' => $id,
+            'name' => $name
+        );
+
+        print_r($arr);
+        
+     
+      return null;
 });
 
 
