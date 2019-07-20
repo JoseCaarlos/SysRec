@@ -31,19 +31,19 @@ Route::get("/registrar","HomeController@register")->name("register");
 Route::post("/registrarCliente","ClientController@register")->name("clientRegister");
 
 // Rota Fornecedor
-Route::get("/registrarFornecedor","HomeController@supplier")->name("supplier");
+Route::get("/registrarFornecedor","SupplierController@index")->name("supplier");
 
-Route::post("/registrarFornecedor_C","SupplierController@register")->name("supplierRegister");
+Route::post("/registrarFornecedorSubmit","SupplierController@register")->name("supplierRegister");
 
 // Rota Categoria
-Route::get("/registrarCategoria","HomeController@category")->name("category");
+Route::get("/registrarCategoria","CategoryController@index")->name("category");
 
-Route::post("/registrarCategoria_C","CategoryController@register")->name("categoryRegister");
+Route::post("/registrarCategoriaSubmit","CategoryController@register")->name("categoryRegister");
 
 // Rota Produtos
 Route::get("/registrarProdutos","ProductController@product")->name("product");
 
-Route::post("/registrarProduct_C","RegisterController@register")->name("productRegister");
+Route::post("/registrarProductSubmit","ProductController@register")->name("productRegister");
 
 
 
