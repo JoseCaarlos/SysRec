@@ -1,5 +1,21 @@
 @extends('layouts.app')
 @section('conteudo')
+<?php
+	if (isset($alert))
+	{
+		?> 
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+			Swal.fire({
+			type: 'error',
+			title: 'Ops...',
+			text: 'Houve falha na autenticação!',
+			footer: '<a href>Recuperar senha?</a>'
+			})
+		</script>
+		<?php
+	}
+?>
 <section class="bgwhite p-t-66 p-b-60">
 	<div class="container">
 		<div class="row">
