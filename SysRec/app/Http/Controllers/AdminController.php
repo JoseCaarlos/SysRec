@@ -38,7 +38,12 @@ class AdminController extends Controller
 			return view('adminPanel');
 		}
 		else 
-			return view('admin');
+		{
+			$alert = "";
+			$alert = true;
+			return view('admin', compact('alert'));
+		}
+			
 
 	}
 

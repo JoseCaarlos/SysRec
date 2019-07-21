@@ -37,6 +37,9 @@
 	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
 <!--==ProdutosDetalhes=============================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"> 
+<!--==Sweet Alert =================================================================================-->
+<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+
 </head>
 <body class="animsition">
 
