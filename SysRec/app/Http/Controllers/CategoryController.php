@@ -25,22 +25,19 @@ class CategoryController extends Controller
 				'create_date' => date("Y-m-d H:i:s"),
 			]
 		]);
-		$alert ="";
-		try{
-			
-			Category::createNodeProperty("Category", $data);
-		}
-		catch(\GraphAware\Neo4j\Client\Exception\Neo4jException $e){
-				if(Category::verificarCategoria($categoryName)){
-					$alert = "error";
-					return view('category', compact('alert'));
-				}
-			
-				
-		}
+		
+		$success = "";
+		$error = "";
 
-		 
-		$alert = "success";
-		return view('category', compact('alert'));
+		if(Category::verificarCategoria($categoryName)){
+			$error = true;
+			return view('category', compact('error'));
+		}
+		else
+		{
+			Category::createNodeProperty("Category", $data);
+			$success = true;		
+			return view('category', compact('success'));
+		}
 	}
 }

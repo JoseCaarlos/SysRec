@@ -6,37 +6,38 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>  
 <script type="text/javascript" src="{{ URL::asset('js/category-register.js') }}"></script>
-<!-- content page -->
 <?php
-
-if (isset($alert) == "error")
+	/* 
+     * Condições de sucesso ou erro ao cadastrar nova categoria.
+	 */ 
+	if(isset($success))
 	{
-		?> 
+		?>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+		Swal.fire(
+				'Sucesso!',
+				'Nova categoria cadastrada!',
+				'success'
+				)
+		</script>
+		<?php
+	}
+	if(isset($error))
+	{
+		?>
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 		<script> 
 			Swal.fire({
 			type: 'error',
 			title: 'Ops...',
-			text: 'Categoria Ja Existe!',
-			
+			text: 'Categoria já existe!'
 			})
 		</script>
 		<?php
 	}
-	else if( isset($alert) == "success"){
-		?>
-		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-		<script> 
-			Swal.fire(
-			'Categoria inserida com sucesso',
-			'success'
- 		 })
-</script>
-	
-	<?php
-	}
-	?>
-
+?>
+<!-- content page -->
 <section class="bgwhite p-t-66 p-b-60">
 		<div class="container">
 			<div class="row">
