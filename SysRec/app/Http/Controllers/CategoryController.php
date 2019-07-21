@@ -17,16 +17,30 @@ class CategoryController extends Controller
 
 	public function register(Request $request)
 	{
-
+		$categoryName =  $request->get("name");
 		$data = ([
 			'infos' => [
-				'name' => $request->get("name"),
+				'name' => $categoryName,
 				'user' => userSession(),
 				'create_date' => date("Y-m-d H:i:s"),
 			]
 		]);
-		Category::createNodeProperty("Category", $data);
+		$alert ="";
+		try{
+			
+			Category::createNodeProperty("Category", $data);
+		}
+		catch(\GraphAware\Neo4j\Client\Exception\Neo4jException $e){
+				if(Category::verificarCategoria($categoryName)){
+					$alert = "error";
+					return view('category', compact('alert'));
+				}
+			
+				
+		}
 
-		return $data;
+		 
+		$alert = "success";
+		return view('category', compact('alert'));
 	}
 }

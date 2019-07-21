@@ -7,6 +7,36 @@
 <script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>  
 <script type="text/javascript" src="{{ URL::asset('js/category-register.js') }}"></script>
 <!-- content page -->
+<?php
+
+if (isset($alert) == "error")
+	{
+		?> 
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+			Swal.fire({
+			type: 'error',
+			title: 'Ops...',
+			text: 'Categoria Ja Existe!',
+			
+			})
+		</script>
+		<?php
+	}
+	else if( isset($alert) == "success"){
+		?>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+			Swal.fire(
+			'Categoria inserida com sucesso',
+			'success'
+ 		 })
+</script>
+	
+	<?php
+	}
+	?>
+
 <section class="bgwhite p-t-66 p-b-60">
 		<div class="container">
 			<div class="row">
@@ -20,6 +50,7 @@
 						<p>Nome</p>
 						<div class="bo4 of-hidden size15 m-b-20">
 							<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="name" id="name" placeholder="Insira um nome de uma nova categoria" maxlength="35">
+							
 						</div>				
 						
 						<!-- Submit Button -->		

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Http\Client\Common\Exception\ClientErrorException;
 
 class ClientController extends Controller
 {
@@ -35,7 +36,16 @@ class ClientController extends Controller
 						 'complement' => $request->get("complement"),
 					   ]
 		 ]);
-		 Client::createNodeProperty("Client",$data);
+
+		 try{
+
+			Client::createNodeProperty("Client",$data);
+		}
+		catch(\GraphAware\Neo4j\Client\Exception\Neo4jException $e)){
+			echo sprintf('Catched exception, message is "%s"', $e->getMessage());
+		}
+		 
+		 
 		
 		return $data;	
 	}
