@@ -14,6 +14,7 @@ class ClientController extends Controller
 	
 	public function register(Request $request)
 	{
+		$cpf = $request->get("cpf");
 
 		$data = ([
 			'infos' => [ 'first_name' => $request->get("first_name"),
@@ -37,17 +38,28 @@ class ClientController extends Controller
 					   ]
 		 ]);
 
-		 try{
+		//  try{
 
-			Client::createNodeProperty("Client",$data);
+		// 	Client::createNodeProperty("Client",$data);
+		// }
+		// catch(\GraphAware\Neo4j\Client\Exception\Neo4jException $e)){
+		// 	echo sprintf('Catched exception, message is "%s"', $e->getMessage());
+		// }
+
+		$success = "";
+		$error = "";
+
+		if(Client::verificarCpf($cpf)){
+			$error = true;
+			return view('register', compact('error','data'));
 		}
-		catch(\GraphAware\Neo4j\Client\Exception\Neo4jException $e)){
-			echo sprintf('Catched exception, message is "%s"', $e->getMessage());
+		else
+		{
+			Client::createNodeProperty("Client", $data);
+			$success = true;		
+			return view('register', compact('success'));
 		}
-		 
-		 
-		
-		return $data;	
+
 	}
 
 }

@@ -12,7 +12,7 @@ $(document).ready(function($){
 		$.ajax({
 			//O campo URL diz o caminho de onde virá os dados
 			//É importante concatenar o valor digitado no CEP
-			url: 'https://viacep.com.br/ws/'+$(this).val()+'/json/unicode/',
+			url: 'https://viacep.com.br/ws/'+$(this).val().replace(/\.|\-/g, '')+'/json/unicode/',
 			//Aqui você deve preencher o tipo de dados que será lido,
 			//no caso, estamos lendo JSON.
 			dataType: 'json',

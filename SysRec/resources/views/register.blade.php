@@ -2,8 +2,44 @@
 @section('conteudo')
 
 	<body class="animsition">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	<script type="text/javascript" src="{{ URL::asset('js/client-register.js') }}"></script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<!-- CONFLITO COM O CEP <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+		<script type="text/javascript" src="{{ URL::asset('js/client-register.js') }}"></script>
+		<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>
+		<script type="text/javascript" src="jquery.maskedinput-1.1.4.pack.js"/></script>
+		<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+		<?php
+	/* 
+     * Condições de sucesso ou erro ao cadastrar nova categoria.
+	 */ 
+	if(isset($success))
+	{
+		?>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+		Swal.fire(
+				'Sucesso!',
+				'Cliente Cadastrado!',
+				'success'
+				)
+		</script>
+		<?php
+	}
+	if(isset($error))
+	{
+		?>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+			Swal.fire({
+			type: 'error',
+			title: 'Ops...',
+			text: 'Cliente ja existe!'
+			})
+		</script>
+		<?php
+	}
+?>
 	<!-- content page -->
 	<section class="bgwhite p-t-66 p-b-60">
 			<div class="container">
@@ -19,7 +55,7 @@
 
 							<!-- Nome -->
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="first_name" placeholder="Primeiro Nome">
+								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" id="first_name" name="first_name" placeholder="Primeiro Nome">
 							</div>
 
 							<!-- Sobrenome -->
@@ -38,12 +74,12 @@
 
 							<!-- Telefone Celular -->
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="phone_number" placeholder="Telefone Celular">
+								<input required class="sp_celphones sizefull s-text7 p-l-22 p-r-22" type="text" name="phone_number" placeholder="Telefone Celular">
 							</div>
 							
 							<!-- Telefone -->
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="telephone" placeholder="Telefone Residencial">
+								<input class="sp_celphones sizefull s-text7 p-l-22 p-r-22" type="text" name="telephone" placeholder="Telefone Residencial">
 							</div>
 
 							<!-- E-Mail -->
@@ -81,7 +117,7 @@
 
 							<!-- CEP -->
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="postal_code" placeholder="CEP">
+								<input required class="cep sizefull s-text7 p-l-22 p-r-22" type="text" id="postal_code" name="postal_code" placeholder="CEP">
 							</div>
 
 							<!-- Rua -->
@@ -91,7 +127,7 @@
 
 							<!-- Número da Rua -->
 							<div class="bo4 of-hidden size15 m-b-20">
-								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="street_number" placeholder="Número da Rua">
+								<input required class="number sizefull s-text7 p-l-22 p-r-22" type="text" name="street_number" placeholder="Número da Rua">
 							</div>
 
 							<!-- Bairro -->

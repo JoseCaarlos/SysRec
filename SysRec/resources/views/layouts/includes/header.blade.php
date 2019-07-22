@@ -39,6 +39,7 @@
 	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"> 
 <!--==Sweet Alert =================================================================================-->
 <script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </head>
 <body class="animsition">
