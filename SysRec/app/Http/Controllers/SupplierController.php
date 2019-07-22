@@ -21,10 +21,12 @@ class SupplierController extends Controller
 	public function register(Request $request)
 	{
 
+	$supplierCNPJ =  $request->get("cnpj");
+
 		$data = ([
 			'infos' => [
 				'name' => $request->get("name"),
-				'cnpj' => $request->get("cnpj"),
+				'cnpj' => $supplierCNPJ,
 				'phone_number' => $request->get("phone_number"),
 				'telephone' => $request->get("telephone"),
 				'email' => $request->get("email"),
@@ -37,8 +39,20 @@ class SupplierController extends Controller
 				'complement' => $request->get("complement"),
 			]
 		]);
-		Supplier::createNodeProperty("Supplier", $data);
+	
+		$success = "";
+		$error = "";
 
-		return $data;
+		if(Supplier::verificarCategoria($supplierCNPJ)){
+			$error = true;
+			return view('supplier', compact('error'));
+		}
+		else
+		{
+			Supplier::createNodeProperty("Supplier", $data);
+			$success = true;		
+			return view('supplier', compact('success'));
+		}
 	}
 }
+

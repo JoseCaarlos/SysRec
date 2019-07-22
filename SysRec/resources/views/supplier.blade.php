@@ -12,6 +12,40 @@
 
 		<script type="text/javascript" src="jquery-1.2.6.pack.js"></script>
 		<script type="text/javascript" src="jquery.maskedinput-1.1.4.pack.js"/></script>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+		<?php
+	/* 
+     * Condições de sucesso ou erro ao cadastrar nova categoria.
+	 */ 
+	if(isset($success))
+	{
+		?>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+		Swal.fire(
+				'Sucesso!',
+				'Novo Fornecedor Cadastrado!',
+				'success'
+				)
+		</script>
+		<?php
+	}
+	if(isset($error))
+	{
+		?>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+			Swal.fire({
+			type: 'error',
+			title: 'Ops...',
+			text: 'Fornecedor ja existe!'
+			})
+		</script>
+		<?php
+	}
+?>
+
 		
 	
 	<!-- content page -->
@@ -33,7 +67,7 @@
 							</div>
            				   <!-- CNPJ -->
               				<div class="bo4 of-hidden size15 m-b-20">
-								<input required class="cnpj sizefull s-text7 p-l-22 p-r-22" type="text" name="cnpj" id="cnpj" placeholder="CNPJ"/>
+								<input required class="cnpj sizefull s-text7 p-l-22 p-r-22" type="text" name="cnpj" id="cnpj" placeholder="CNPJ" maxlength="18"/>
 							</div>
 
 							<!-- Telefone Celular -->
@@ -61,26 +95,35 @@
 
 							<!-- Rua -->
 							<div class="bo4 of-hidden size15 m-b-20">
+								
 								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="street" id="street" placeholder="Rua">
+								
 							</div>
 
 							<!-- Número -->
 							<div class="bo4 of-hidden size15 m-b-20">
+								
 								<input required class="number sizefull s-text7 p-l-22 p-r-22" type="text" name="street_number" id="street_number" placeholder="Número">
+								
 							</div>
 
 							<!-- Bairro -->
 							<div class="bo4 of-hidden size15 m-b-20">
+								
 								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="neighborhood" id="neighborhood" placeholder="Bairro">
+								
 							</div>
 
 							<!-- Cidade -->
 							<div class="bo4 of-hidden size15 m-b-20">
+								
 								<input required class="sizefull s-text7 p-l-22 p-r-22" type="text" name="city" id="city" placeholder="Cidade">
+								
 							</div>
 
 							<!-- Estado -->
 							<div class="bo4 of-hidden size15 m-b-20">
+								
 								<select class="sizefull s-text7 p-l-22 p-r-22" name="state" id="state">
 									<option value="" selected disabled hidden>Escolha um estado</option>
 									<option value="AC">Acre</option>
