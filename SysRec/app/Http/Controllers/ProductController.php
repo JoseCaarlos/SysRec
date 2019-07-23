@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Repositories\ImageRepository;
 
 class ProductController extends Controller
 {
@@ -12,7 +13,7 @@ class ProductController extends Controller
 		return false;
 	}
 
-	public function register(Request $request)
+	public function register(Request $request, ImageRepository $repo)
 	{
 
 		$data = ([
@@ -35,9 +36,14 @@ class ProductController extends Controller
 			'idTwo' => $request->get("supplier_id"),
 		]);
 		Product::createNodeProductProperty("Product", $data, $rel);
+		$id= 32;
+		if ($request->hasFile('primaryImage')) {
+			$data->path_image = $repo->saveImage($request->primaryImage, $id, 'products', 250);
+		 }
 
 		return $data;
 	}
+
 	public function product()
 	{
 		$strSup = "";
