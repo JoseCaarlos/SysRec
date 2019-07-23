@@ -64,24 +64,26 @@ Route::get("/sairAdmin","AdminController@logout")->name("logout");
 //         'infos' => ['name' => 'Geladeira', 'Price' => 4000.00]
 //      ]);
      
-//    //  $prop2 = ([
-//    //      'infos' => ['first_name' => $request->get("first_name"),
-//    //                   'last_name' => $request->get("last_name"),
-//    //                   'cpf' => $request->get("cpf"),
-//    //                   'rg' => $request->get("rg"),
-//    //                   'sex' => $request->get("sex"),
-//    //                   'telephone' => $request->get("telephone"),
-//    //                   'phone_number' => $request->get("phone_numbere"),
-//    //                   'birth_date' => $request->get("birth_date"),
-//    //                   'state' => $request->get("state"),
-//    //                   'city' => $request->get("city"),
-//    //                   'postal_code' => $request->get("postal_code"),
-//    //                   'street' => $request->get("street"),
-//    //                   'street_number' => $request->get("street_number"),
-//    //                   'complement' => $request->get("complement"),
-//    //                   'email' => $request->get("email"),
-//    //                   ]
-//    //   ]);
+    // $prop2 = ([
+    //     'infos' => ['first_name' => $request->get("first_name"),
+    //                  'last_name' => $request->get("last_name"),
+    //                  'cpf' => $request->get("cpf"),
+    //                  'rg' => $request->get("rg"),
+    //                  'sex' => $request->get("sex"),
+    //                  'telephone' => $request->get("telephone"),
+    //                  'phone_number' => $request->get("phone_numbere"),
+    //                  'birth_date' => $request->get("birth_date"),
+    //                  'state' => $request->get("state"),
+    //                  'city' => $request->get("city"),
+    //                  'postal_code' => $request->get("postal_code"),
+    //                  'street' => $request->get("street"),
+    //                  'street_number' => $request->get("street_number"),
+    //                  'complement' => $request->get("complement"),
+    //                  'email' => $request->get("email"),
+    //                  ]
+    //  ]);
+
+
 
 //      //name, cpf, rg, sex, telephone, phone_number,date_birth, address (o endereço deve conter: state, city, postal_code, street , street_number, complement), email.
 //      $where = ([
@@ -116,21 +118,21 @@ Route::get("/sairAdmin","AdminController@logout")->name("logout");
 //       // $neo4j = Neo4j::conectar();
 //       // $query = 'MATCH (m:Cliente) RETURN m,m.name as name';
       // $c = $neo4j->run($query);
-      $data = Neo4j::matchNode("supplier");
-        foreach ($data as $record)
-        {
-            $id[] = $record->value('id'). PHP_EOL;
-            $name[] = $record->value('name') . PHP_EOL;
-      echo"<br>";
-        }
+    //   $data = Neo4j::matchNode("supplier");
+    //     foreach ($data as $record)
+    //     {
+    //         $id[] = $record->value('id'). PHP_EOL;
+    //         $name[] = $record->value('name') . PHP_EOL;
+    //   echo"<br>";
+    //     }
 
-        print_r($name);
-        echo"<br>";
+    //     print_r($name);
+    //     echo"<br>";
 
-        $arr = array(
-            'id' => $id,
-            'name' => $name
-        );
+    //     $arr = array(
+    //         'id' => $id,
+    //         'name' => $name
+    //     );
 
         print_r($arr);
         

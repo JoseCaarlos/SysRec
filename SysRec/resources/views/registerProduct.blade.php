@@ -14,7 +14,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6 p-b-30">
-						<form id="formfield" class="leave-comment" method="POST" action="{{ route('productRegister') }}" enctype="multipart/form-data">>
+						<form id="formfield" class="leave-comment" method="POST" action="{{ route('productRegister') }}" enctype="multipart/form-data">
 						@csrf
 							<h4 class="m-text26 p-b-36 p-t-15">
 								Registro de Produto

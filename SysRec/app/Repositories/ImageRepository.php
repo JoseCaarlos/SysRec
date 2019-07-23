@@ -16,7 +16,7 @@ class ImageRepository
             $url = 'http://'.$_SERVER['HTTP_HOST'].'/images/'.$type.'/'.$id.'/'.$fileName;
             $fullPath = $destinationPath.$fileName;
             if (!file_exists($destinationPath)) {
-                File::makeDirectory($destinationPath, 0775);
+                File::makeDirectory($destinationPath, 0775,true);
             }
             $image = Image::make($file)
                 ->resize($size, null, function ($constraint) {

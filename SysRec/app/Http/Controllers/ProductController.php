@@ -28,19 +28,19 @@ class ProductController extends Controller
 				'width' => $request->get("width"),
 				'depth' => $request->get("depth"),
 				'weight' => $request->get("weight"),
-				'sac' => $request->get("sac")
+				'sac' => $request->get("sac"),
+				'path_file' => ''
 			]
 		]);
 		$rel = ([
 			'idOne' => $request->get("category_id"),
 			'idTwo' => $request->get("supplier_id"),
 		]);
-		Product::createNodeProductProperty("Product", $data, $rel);
 		$id= 32;
 		if ($request->hasFile('primaryImage')) {
-			$data->path_image = $repo->saveImage($request->primaryImage, $id, 'products', 250);
+			$data['infos']['path_file'] = $repo->saveImage($request->primaryImage, $request->get("name"), 'products', 1080);
 		 }
-
+		Product::createNodeProductProperty("Product", $data, $rel);
 		return $data;
 	}
 
