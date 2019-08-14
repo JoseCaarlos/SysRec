@@ -20,4 +20,10 @@ class Product extends Neo4j
                                     CREATE (n)<-[:SUPPLIES]-(s)
                                     RETURN *', $property);
         }
+        public static function matchNodeProduct($name)
+        {
+                $result =  Neo4j::conectar()->run('MATCH (n:' . $name . ') return n.name as name,
+                id(n) as id, n.path_file as file, n.sales_price as price ');
+                return $result;
+        }
 }

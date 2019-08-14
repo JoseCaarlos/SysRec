@@ -96,10 +96,13 @@
 								<input required class="sp_celphones sizefull s-text7 p-l-22 p-r-22" type="text" name ="sac" placeholder="Telefone SAC" id="sac">		
 							</div>
 							<!--Imagem -->
-							<div class="bo4 of-hidden size15 m-b-20">
+							<div class="bo4 of-hidden size18 m-b-20">
 							{{ csrf_field() }}
-   							<input type='file' id="primaryImage" name="primaryImage" accept="image/*" />
+							   <input type='file' id="primaryImage"  name="primaryImage" accept="image/*" />
+							
+							 
 							</div>
+
 							
 							<!-- Submit Button -->		
 							<div class="w-size25">

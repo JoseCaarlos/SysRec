@@ -12,7 +12,7 @@ class Neo4j
          *
          */ 
         $neo4j = ClientBuilder::create()
-            ->addConnection('http', 'http://neo4j:1234@localhost:11008')
+            ->addConnection('http', 'http://neo4j:1234@localhost:7474')
             ->build();
 
         return $neo4j;
@@ -30,7 +30,7 @@ class Neo4j
 
         // Cria um node Vazio
         public static function matchNode($name){
-           $result =  Neo4j::conectar()->run('MATCH (n:'.$name.') return n.name as name,id(n) as id');
+    $result =  Neo4j::conectar()->run('MATCH (n:'.$name.') return n.name as name,id(n) as id');
             return $result;
     }
 

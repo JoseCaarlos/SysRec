@@ -27,7 +27,7 @@ class ImageRepository
             return $url;
         } else {
             return 'http://'.$_SERVER['HTTP_HOST'].'/images/'.$type.'/placeholder300x300.jpg';
-        }
+        }   
     }
 }
 

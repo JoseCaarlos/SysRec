@@ -37,9 +37,13 @@ class ProductController extends Controller
 			'idTwo' => $request->get("supplier_id"),
 		]);
 		$id= 32;
+		$i=0;
 		if ($request->hasFile('primaryImage')) {
-			$data['infos']['path_file'] = $repo->saveImage($request->primaryImage, $request->get("name"), 'products', 1080);
-		 }
+			//foreach ($request->primaryImage as $image) {
+				$data['infos']['path_file'] = $repo->saveImage($request->primaryImage, $request->get("name"), 'products', 1080);
+				
+			//}
+		}
 		Product::createNodeProductProperty("Product", $data, $rel);
 		return $data;
 	}
@@ -60,4 +64,5 @@ class ProductController extends Controller
 
 		return view('registerProduct', compact('strCat', 'strSup'));
 	}
+
 }
