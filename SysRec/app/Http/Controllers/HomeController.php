@@ -20,8 +20,8 @@ class HomeController extends Controller
         $count = 0;
         $strSup = "";
         $link = "{{route('produtoDetalhe')}";
-        var_dump($link);
- exit;        
+        // var_dump($link);
+//  exit;        
         $dataSup = Product::matchNodeProduct("Product");
         foreach ($dataSup->getrecords() as $r) :
             $count++;
