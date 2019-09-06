@@ -196,7 +196,7 @@
 							</div>
 
 							<div class="block2-txt p-t-20">
-								<a href="{{ route('produtoDetalhe') }}" class="block2-name dis-block s-text3 p-b-5">
+								<a href="" class="block2-name dis-block s-text3 p-b-5">
 									Herschel supply co 25l
 									rerere
 								</a>

@@ -14,9 +14,11 @@ use App\Neo4j\Neo4j;
 
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get("/produto", "HomeController@produto")->name("produto");
+Route::get("/produtos", "HomeController@produto")->name("produto");
 
-Route::get("/produtoDetalhe", "HomeController@produtoDetalhe")->name("produtoDetalhe");
+Route::get("/produtos/{id}", "ProductController@filterCat")->name("produtoCategoria");
+
+Route::get("/produtoDetalhe/{id}", "HomeController@produtoDetalhe")->name("produtoDetalhe");
 
 Route::get("/sobre", "HomeController@about")->name("about");
 
@@ -45,6 +47,9 @@ Route::get("/registrarProdutos","ProductController@product")->name("product");
 
 Route::post("/registrarProductSubmit","ProductController@register")->name("productRegister");
 
+
+// Rota Cliente
+Route::any("/principal","clientController@autenticar")->name("clienteLogin");
 
 
 
@@ -134,7 +139,6 @@ Route::get("/sairAdmin","AdminController@logout")->name("logout");
     //         'name' => $name
     //     );
 
-        print_r($arr);
         
      
       return null;

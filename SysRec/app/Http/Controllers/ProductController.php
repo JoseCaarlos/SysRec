@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
+use App\Models\Product;	
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Repositories\ImageRepository;
 
@@ -63,6 +64,22 @@ class ProductController extends Controller
 		endforeach;
 
 		return view('registerProduct', compact('strCat', 'strSup'));
+	}
+
+	public function filterCat($id){
+		$dataSup = Product::matchNodeProductCat("Product",$id);
+		$count = count($dataSup->getRecords());
+		$category = Category::matchNode("Category");
+		return view('product',['dataSup' => $dataSup->getRecords(),'category' => $category->getRecords(), 'count' => $count]);
+	}
+
+	public function filterPreco($inf, $sup){
+		$data = Product::matchNodePrice($inf, $sup);
+
+	}
+
+	public function addCart($id){
+		
 	}
 
 }

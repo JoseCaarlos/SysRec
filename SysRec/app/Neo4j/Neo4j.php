@@ -28,8 +28,8 @@ class Neo4j
         Neo4j::conectar()->run('CREATE (n:'.$node.') SET n += {infos}', $property);
     }
 
-        // Cria um node Vazio
-        public static function matchNode($name){
+    // Seleciona o node retornando nome e id
+    public static function matchNode($name){
     $result =  Neo4j::conectar()->run('MATCH (n:'.$name.') return n.name as name,id(n) as id');
             return $result;
     }

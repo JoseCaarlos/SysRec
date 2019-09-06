@@ -5,45 +5,44 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.png"/>
+	<link rel="icon" type="image/png" href="/images/icons/favicon.png"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/themify/themify-icons.css">
+	<link rel="stylesheet" type="text/css" href="/fonts/themify/themify-icons.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+	<link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="fonts/elegant-font/html-css/style.css">
+	<link rel="stylesheet" type="text/css" href="/fonts/elegant-font/html-css/style.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/slick/slick.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/lightbox2/css/lightbox.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/lightbox2/css/lightbox.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/util.css">
-	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="/css/util.css">
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
 <!--==Produtos=====================================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="/vendor/noui/nouislider.min.css">
 <!--==ProdutosDetalhes=============================================================================-->
-	<link rel="stylesheet" type="text/css" href="vendor/slick/slick.css"> 
+	<link rel="stylesheet" type="text/css" href="/vendor/slick/slick.css"> 
 <!--==Sweet Alert =================================================================================-->
-<script type="text/javascript" src="vendor/sweetalert/sweetalert.min.js"></script>
+<script type="text/javascript" src="/vendor/sweetalert/sweetalert.min.js"></script>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 </head>
 <body class="animsition">
-
 	<!-- Header -->
 	<header class="header1">
 		<!-- Header desktop -->
@@ -69,7 +68,7 @@
 			<div class="wrap_header">
 				<!-- Logo -->
 				<a href="{{ route('home') }}" class="logo">
-					<img src="images/icons/logo.png" alt="IMG-LOGO">
+					<img src="/images/icons/logo.png" alt="IMG-LOGO">
 				</a>
 
 				<!-- Menu -->
@@ -108,13 +107,13 @@
 				<!-- Header Icon -->
 				<div class="header-icons">
 					<a href="{{ route('client') }}" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+						<img src="/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
 
 					<span class="linedivide1"></span>
 
 					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+						<img src="/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 						<span class="header-icons-noti">0</span>
 
 						<!-- Header cart noti -->
@@ -122,7 +121,7 @@
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
+										<img src="/images/item-cart-01.jpg" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
@@ -138,7 +137,7 @@
 
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
+										<img src="/images/item-cart-02.jpg" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
@@ -154,7 +153,7 @@
 
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
+										<img src="/images/item-cart-03.jpg" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
@@ -198,7 +197,7 @@
 		<div class="wrap_header_mobile">
 			<!-- Logo moblie -->
 			<a href="{{ route('home') }}" class="logo-mobile">
-				<img src="images/icons/logo.png" alt="IMG-LOGO">
+				<img src="/images/icons/logo.png" alt="IMG-LOGO">
 			</a>
 
 			<!-- Button show menu -->
@@ -206,13 +205,13 @@
 				<!-- Header Icon mobile -->
 				<div class="header-icons-mobile">
 					<a href="#" class="header-wrapicon1 dis-block">
-						<img src="images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
+						<img src="/images/icons/icon-header-01.png" class="header-icon1" alt="ICON">
 					</a>
 
 					<span class="linedivide2"></span>
 
 					<div class="header-wrapicon2">
-						<img src="images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
+						<img src="/images/icons/icon-header-02.png" class="header-icon1 js-show-header-dropdown" alt="ICON">
 						<span class="header-icons-noti">0</span>
 
 						<!-- Header cart noti -->
@@ -220,7 +219,7 @@
 							<ul class="header-cart-wrapitem">
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-01.jpg" alt="IMG">
+										<img src="/images/item-cart-01.jpg" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
@@ -236,7 +235,7 @@
 
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-02.jpg" alt="IMG">
+										<img src="/images/item-cart-02.jpg" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">
@@ -252,7 +251,7 @@
 
 								<li class="header-cart-item">
 									<div class="header-cart-item-img">
-										<img src="images/item-cart-03.jpg" alt="IMG">
+										<img src="/images/item-cart-03.jpg" alt="IMG">
 									</div>
 
 									<div class="header-cart-item-txt">

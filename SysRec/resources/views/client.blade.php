@@ -1,5 +1,23 @@
 @extends('layouts.app')
 @section('conteudo')
+
+<?php
+	if (isset($alert))
+	{
+		?> 
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+		<script> 
+			Swal.fire({
+			type: 'error',
+			title: 'Ops...',
+			text: 'Houve falha na autenticação!',
+			footer: '<a href>Recuperar senha?</a>'
+			})
+		</script>
+		<?php
+	}
+?>
+
 <body class="animsition">
 
 <!-- content page -->
@@ -7,7 +25,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 p-b-30">
-					<form class="leave-comment">
+					<form action="{{ route ('clienteLogin')}}" class="leave-comment">
 						<h4 class="m-text26 p-b-36 p-t-15">
 							Login
 						</h4>

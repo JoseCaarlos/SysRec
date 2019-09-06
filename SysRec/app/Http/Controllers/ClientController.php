@@ -61,5 +61,38 @@ class ClientController extends Controller
 		}
 
 	}
+	
+	public function autenticar(Request $request)
+	{
+
+		$u = $request->input("name");
+		$p = $request->input("password");
+		$auth = new Client();
+
+
+		if($auth->autenticar($u, $p) OR isClient() == true)
+		{
+			$dados = Client::dados($u,$p);
+			$r = $dados->getRecord();
+			/* Carrega Sessão Cliente e E-mail */
+			$nome = $r->value('name');
+			if(isset($u))
+			{
+				$request->session()->put('client', true);
+				$request->session()->put('email', $u);
+				$request->session()->put('name', $r->value('name'));
+			}			
+			return redirect('/produtos');
+		}
+		else 
+		{
+			$alert = "";
+			$alert = true;
+			return view('client', compact('alert'));
+		}
+			
+
+	}
+
 
 }

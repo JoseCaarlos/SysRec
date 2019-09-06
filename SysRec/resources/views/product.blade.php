@@ -11,40 +11,21 @@
 						<h4 class="m-text14 p-b-7">
 							Categories
 						</h4>
-
 						<ul class="p-b-54">
 							<li class="p-t-4">
-								<a href="#" class="s-text13 active1">
+								<a href=" {{ route ('produto')}}" class="s-text13 active1">
 									All
 								</a>
 							</li>
-
+							@foreach($category as $r)
 							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Women
+								<a href="{{ route('produtoCategoria', $r->value('id')) }}" class="s-text13">
+									{{$r->value('name')}}
 								</a>
 							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Men
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Kids
-								</a>
-							</li>
-
-							<li class="p-t-4">
-								<a href="#" class="s-text13">
-									Accesories
-								</a>
-							</li>
-						</ul>
-
-						<!--  -->
+							@endforeach
+						</ul>						
+							<!--  -->
 						<h4 class="m-text14 p-b-32">
 							Filters
 						</h4>
@@ -61,9 +42,9 @@
 							<div class="flex-sb-m flex-w p-t-16">
 								<div class="w-size11">
 									<!-- Button -->
-									<button class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
+									<a href="" class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
 										Filter
-									</button>
+									</a>
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
@@ -152,7 +133,7 @@
 						</div>
 
 						<span class="s-text8 p-t-5 p-b-5">
-							<?php echo $count ?>
+							{{$count}}
 						</span>
 					</div>
 
@@ -160,10 +141,40 @@
 					<div class="row">
 						
 							<!-- Block2 -->
-							<?php echo $strSup ?>   
-							
-					</div>
+						@foreach($dataSup as $r)
+							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+								<div class="block2">
+										<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+											<img src="{{ $r->value('file') }}" alt="IMG-PRODUCT">
 
+											<div class="block2-overlay trans-0-4">
+												<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+													<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+													<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
+												</a>
+
+												<div class="block2-btn-addcart w-size1 trans-0-4">
+													<!-- Button -->
+													<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+														Add to Cart
+													</button>
+												</div>
+											</div>
+										</div>
+
+										<div class="block2-txt p-t-20">
+										<a href="{{ route('produtoDetalhe', $r->value('id')) }}" class="block2-name dis-block s-text3 p-b-5">
+											{{$r->value("name")}}
+										</a>
+
+											<span class="block2-price m-text6 p-r-5">
+												R$ {{ $r->value('price')}}
+											</span>
+										</div>
+									</div>
+									</div>										
+						@endforeach	
+					</div>
 
 					<!-- Pagination -->
 					<div class="pagination flex-m flex-w p-t-26">
