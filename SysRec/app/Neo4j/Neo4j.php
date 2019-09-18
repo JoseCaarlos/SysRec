@@ -55,8 +55,8 @@ class Neo4j
     // Deleção de algum node, caso queira apagar os relacionamentos passa-se 2 param como True.
     public static function deleteNode($node,$bool){
         $detach = $bool ? "DETACH": "";
-        Neo4j::conectar()->run('MATCH (m:'.$node['Node'].'{name:"'.$node['Id'].'"}) 
-                               '.$detach.' DELETE m');
+        Neo4j::conectar()->run('MATCH (n:'.$node['Node'].') where ID(n) = '.$node['Id'].' 
+                               '.$detach.' DELETE n');
     }
 
     public static function createNodeProductProperty($node,$property,$rel){

@@ -24,8 +24,8 @@
 								</a>
 							</li>
 							@endforeach
-						</ul>						
-							<!--  -->
+						</ul>
+						<!--  -->
 						<h4 class="m-text14 p-b-32">
 							Filters
 						</h4>
@@ -48,7 +48,7 @@
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower">610</span> - $<span id="value-upper">980</span>
+									Range: $<span id="value-lower" value="">610</span> - $<span id="value-upper" value="">980</span>
 								</div>
 							</div>
 						</div>
@@ -139,41 +139,41 @@
 
 					<!-- Product -->
 					<div class="row">
-						
-							<!-- Block2 -->
+
+						<!-- Block2 -->
 						@foreach($dataSup as $r)
-							<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
-								<div class="block2">
-										<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
-											<img src="{{ $r->value('file') }}" alt="IMG-PRODUCT">
+						<div class="col-sm-12 col-md-6 col-lg-4 p-b-50">
+							<div class="block2">
+								<div class="block2-img wrap-pic-w of-hidden pos-relative block2-labelnew">
+									<img src="{{ $r->value('file') }}" alt="IMG-PRODUCT">
 
-											<div class="block2-overlay trans-0-4">
-												<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
-													<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
-													<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
-												</a>
-
-												<div class="block2-btn-addcart w-size1 trans-0-4">
-													<!-- Button -->
-													<button class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-														Add to Cart
-													</button>
-												</div>
-											</div>
-										</div>
-
-										<div class="block2-txt p-t-20">
-										<a href="{{ route('produtoDetalhe', $r->value('id')) }}" class="block2-name dis-block s-text3 p-b-5">
-											{{$r->value("name")}}
+									<div class="block2-overlay trans-0-4">
+										<a href="#" class="block2-btn-addwishlist hov-pointer trans-0-4">
+											<i class="icon-wishlist icon_heart_alt" aria-hidden="true"></i>
+											<i class="icon-wishlist icon_heart dis-none" aria-hidden="true"></i>
 										</a>
 
-											<span class="block2-price m-text6 p-r-5">
-												R$ {{ $r->value('price')}}
-											</span>
+										<div class="block2-btn-addcart w-size1 trans-0-4">
+											<!-- Button -->
+											<a href="{{ route ('cartId', $r->value('id')) }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
+												Add to Cart
+											</a>
 										</div>
 									</div>
-									</div>										
-						@endforeach	
+								</div>
+
+								<div class="block2-txt p-t-20">
+									<a href="{{ route('produtoDetalhe', $r->value('id')) }}" class="block2-name dis-block s-text3 p-b-5">
+										{{$r->value("name")}}
+									</a>
+
+									<span class="block2-price m-text6 p-r-5">
+										R$ {{ $r->value('price')}}
+									</span>
+								</div>
+							</div>
+						</div>
+						@endforeach
 					</div>
 
 					<!-- Pagination -->
@@ -189,13 +189,11 @@
 	@endsection
 
 
-<!--===============================================================================================-->
-<script type="text/javascript" src="vendor/daterangepicker/moment.min.js"></script>
-<script type="text/javascript" src="vendor/daterangepicker/daterangepicker.js"></script>
-
+	<!--===============================================================================================-->
 	
-	<script type="text/javascript">
 
+
+	<script type="text/javascript">
 		$(".selection-2").select2({
 			minimumResultsForSearch: 20,
 			dropdownParent: $('#dropDownSelect2')
@@ -205,25 +203,25 @@
 	<!--===============================================================================================-->
 	<script type="text/javascript" src="vendor/noui/nouislider.min.js"></script>
 	<script type="text/javascript">
-			/*[ No ui ]
+		/*[ No ui ]
 			===========================================================*/
-			var filterBar = document.getElementById('filter-bar');
+		var filterBar = document.getElementById('filter-bar');
 
-			noUiSlider.create(filterBar, {
-				start: [ 50, 200 ],
-				connect: true,
-				range: {
-					'min': 50,
-					'max': 200
-				}
-			});
+		noUiSlider.create(filterBar, {
+			start: [50, 200],
+			connect: true,
+			range: {
+				'min': 50,
+				'max': 200
+			}
+		});
 
-			var skipValues = [
+		var skipValues = [
 			document.getElementById('value-lower'),
 			document.getElementById('value-upper')
-			];
+		];
 
-			filterBar.noUiSlider.on('update', function( values, handle ) {
-				skipValues[handle].innerHTML = Math.round(values[handle]) ;
-			});
-		</script>
+		filterBar.noUiSlider.on('update', function(values, handle) {
+			skipValues[handle].value = Math.round(values[handle]);
+		});
+	</script>

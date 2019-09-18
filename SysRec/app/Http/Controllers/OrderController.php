@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Order;
+use GraphAware\Bolt\Protocol\V1\Session;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -29,6 +30,21 @@ class OrderController extends Controller
 		 Order::createNodeProperty("Order",$data);
 		
 		return $data;	
+	}
+
+	public function finalizar(){
+		$data = ([
+			'infos' => [
+                'compra' => 1,
+                'idCli' => intVal(Session('id')),
+                'idPro' => null          
+			]
+        ]);
+        $rel = ([
+			'idCli' => Session('id'),
+		]);
+		$data = Order::finalSale($data, $rel);
+		 
 	}
 
 }

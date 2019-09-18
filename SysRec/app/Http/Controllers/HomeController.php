@@ -5,51 +5,90 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $para = (empty(session('id'))) ? 'null' : session('id');
+        $data = Order::matchNodeOrder($para);
+        return view('home', ['data' => $data->getRecords()]);
     }
 
     public function produto(Request $request)
-    {   
-        var_dump(session('name'));
-        var_dump(session('email'));
+    {
         $dataSup = Product::matchNodeProduct("Product");
         $count = count($dataSup->getRecords());
         $category = Category::matchNode("Category");
-
-        return view('product',['dataSup' => $dataSup->getRecords(), 'category' => $category->getRecords(),'count' => $count]);
+        $para = (empty(session('id'))) ? 'null' : session('id');
+        $data = Order::matchNodeOrder($para);
+        $data = empty($data->getRecords()) ? null : $data->getRecords();
+        return view('product', ['dataSup' => $dataSup->getRecords(), 'category' => $category->getRecords(), 'count' => $count, 'data' => $data]);
     }
 
     public function produtoDetalhe($id)
-    {   
+    {
         $p = Product::matchNodeId("Product", $id);
         $dataRel = Product::matchNodeRel($id);
-        return view('productDetail', ['p' => $p->getRecord(),'dataRel' => $dataRel->getRecords()]);
+        $para = (empty(session('id'))) ? 'null' : session('id');
+        $data = Order::matchNodeOrder($para);
+        return view('productDetail', ['p' => $p->getRecord(), 'dataRel' => $dataRel->getRecords(), 'data' => $data->getRecords()]);
     }
 
     public function about()
     {
-        return view('about');
+        $para = (empty(session('id'))) ? 'null' : session('id');
+        $data = Order::matchNodeOrder($para);
+        return view('about', ['data' => $data->getRecords()]);
     }
 
     public function contact()
     {
-        return view('contact');
+        $para = (empty(session('id'))) ? 'null' : session('id');
+        $data = Order::matchNodeOrder($para);
+        return view('contact', ['data' => $data->getRecords()]);
     }
 
-    public function cart()
+    public function cart($id)
     {
-        
-        return view('cart');
+        if (!empty(session('id'))) {
+            date_default_timezone_set('America/Sao_Paulo');
+            $date = date('Y-m-d H:i');
+            $data = ([
+                'infos' => [
+                    'compra' => 0,
+                    'idCli' => intVal(Session('id')),
+                    'idPro' => intVal($id)
+                ]
+            ]);
+            $rel = ([
+                'idCli' => Session('id'),
+                'idPro' => $id,
+                'date' => $data
+            ]);
+            $dados = Order::createNodeOrderProperty($data, $rel);
+            $dataRel = Product::matchNodeRel($dados->getRecord()->value('idP'));
+            return view('cart', ['data' => $dados->getRecords(), 'dataRel' => $dataRel->getRecords()]);
+        } else {
+            $data = Order::matchNodeOrder('null');
+            return view('client', ['data' => $data->getRecords()]);
+        }
     }
 
     public function client()
     {
-        return view('client');
+        if (!isClient())
+		{	
+			return view('client');
+		}
+		else 
+		{
+            $para = (empty(session('id'))) ? 'null' : session('id');
+            $data = Order::matchNodeOrder($para);
+            return view('clientPanel', ['data' => $data->getRecords()]);
+		}
+
     }
 
     public function register()

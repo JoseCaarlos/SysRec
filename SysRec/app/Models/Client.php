@@ -19,7 +19,7 @@ class Client extends Neo4j
 
     public static function dados($user_name, $password)
     {
-        $cypher_query = "MATCH (n:Client) WHERE n.email = '". $user_name ."' and n.confirm_password = '". $password ."' return n.email as email, n.name as name";
+        $cypher_query = "MATCH (n:Client) WHERE n.email = '". $user_name ."' and n.confirm_password = '". $password ."' return ID(n) as id, n.email as email, n.name as name";
         return Neo4j::conectar()->run($cypher_query);
     }
 }

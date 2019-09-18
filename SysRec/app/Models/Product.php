@@ -39,7 +39,7 @@ class Product extends Neo4j
         //Seleciona Node pelo ID, retornando tudo
         public static function matchNodeId($name, $id)
         {
-                $result =  Neo4j::conectar()->run('MATCH (n:' . $name . '),(n)-[:PART_OF]->(k) where ID(n) = ' . $id . ' return n.path_file as file,n.name as name, n.sales_price as price, n.describ as describ, k.name as category, ID(k) as catId');
+                $result =  Neo4j::conectar()->run('MATCH (n:' . $name . '),(n)-[:PART_OF]->(k) where ID(n) = ' . $id . ' return ID(n) as id, n.path_file as file,n.name as name, n.sales_price as price, n.describ as describ, k.name as category, ID(k) as catId');
                 return $result;
         }
 

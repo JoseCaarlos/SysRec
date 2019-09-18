@@ -3,11 +3,36 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Order;
+use App\Models\Product;
 
 class CartController extends Controller
 {
 
-    public function index(){
-        return view('cart');
+    public function index()
+    {
+        if (!empty(session('id'))) {
+            $result = Order::matchNodeOrder(session('id'));
+            if(!empty($result)){
+                $data = empty($result) ? null : $result->getRecords();
+                $dataRel = empty($result) ? null : Product::matchNodeRel($result->getRecord()->value('idP'));
+                return view('cart', ['data' => $data, 'dataRel' => $dataRel->getRecords()]);
+            }else{
+                return view('cart', ['data' => null, 'dataRel' => null]);
+            }
+            
+        }else{
+            $data = Order::matchNodeOrder('null');
+            return view('client', ['data' => null]);
+        }
+    }
+    public function excluir($id)
+    {
+        $node = array(
+            "Node" => "Order",
+            "Id" => $id
+        );
+        Order::deleteNode($node, true);
+        return redirect('carrinho');
     }
 }

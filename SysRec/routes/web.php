@@ -1,4 +1,6 @@
 <?php
+
+use App\Http\Controllers\OrderController;
 use App\Neo4j\Neo4j;
 
 /*
@@ -24,9 +26,15 @@ Route::get("/sobre", "HomeController@about")->name("about");
 
 Route::get("/contato","HomeController@contact")->name("contact");
 
-Route::get("/carrinho","HomeController@cart")->name("cart");
+Route::get("/carrinho/{id}", "HomeController@cart")->name("cartId");
+
+Route::get("/carrinho","CartController@index")->name("cart");
+
+Route::get("/carrinhoExcluir/{id}","CartController@excluir")->name("cartExcluir");
 
 Route::get("/cliente","HomeController@client")->name("client");
+
+Route::get("/finalizar", "OrderController@finalizar")->name("finalizar");
 
 Route::get("/registrar","HomeController@register")->name("register");
 
@@ -51,7 +59,11 @@ Route::post("/registrarProductSubmit","ProductController@register")->name("produ
 // Rota Cliente
 Route::any("/principal","clientController@autenticar")->name("clienteLogin");
 
+Route::get("/sairCliente","clientController@logout")->name("logoutCliente");
 
+Route::get("/panelCliente","clientController@panelCliente")->name("clientPanel");
+
+Route::get("/consultaVenda","clientController@consultSale")->name("consultSale");
 
 // Rota administrativa
 Route::get("/admin","AdminController@index")->name("admin");
