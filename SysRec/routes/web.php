@@ -34,7 +34,7 @@ Route::get("/carrinhoExcluir/{id}","CartController@excluir")->name("cartExcluir"
 
 Route::get("/cliente","HomeController@client")->name("client");
 
-Route::get("/finalizar", "OrderController@finalizar")->name("finalizar");
+Route::get("/finalizar", "OrderController@finalizar")->name("finalSale");
 
 Route::get("/registrar","HomeController@register")->name("register");
 
@@ -64,6 +64,8 @@ Route::get("/sairCliente","clientController@logout")->name("logoutCliente");
 Route::get("/panelCliente","clientController@panelCliente")->name("clientPanel");
 
 Route::get("/consultaVenda","clientController@consultSale")->name("consultSale");
+
+Route::get("/consultaAjax/{id}", "clientController@consultAjax");
 
 // Rota administrativa
 Route::get("/admin","AdminController@index")->name("admin");

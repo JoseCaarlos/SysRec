@@ -37,14 +37,16 @@ class OrderController extends Controller
 			'infos' => [
                 'compra' => 1,
                 'idCli' => intVal(Session('id')),
-                'idPro' => null          
+				'idPro' => null,    
+				'discount' => 0,
+				'totalOrder' => 150
 			]
         ]);
         $rel = ([
 			'idCli' => Session('id'),
+			'quantity' => 0
 		]);
 		$data = Order::finalSale($data, $rel);
-		 
 	}
-
+	
 }

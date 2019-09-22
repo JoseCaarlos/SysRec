@@ -41,6 +41,7 @@
 	<!--==Sweet Alert =================================================================================-->
 	<script type="text/javascript" src="/vendor/sweetalert/sweetalert.min.js"></script>
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 </head>
 
@@ -147,7 +148,7 @@
 										</a>
 
 										<span class="header-cart-item-info">
-											{{$r->value('price')}}
+											<input style="background-color:transparent;" type="number" class="totProd" disabled value="{{ $r->value('price') }}">
 										</span>
 									</div>
 								</li>
@@ -156,7 +157,7 @@
 							</ul>
 
 							<div class="header-cart-total">
-								Total: $75.00
+								<input style="background-color:transparent;" type="number" id="totCart" disabled value="">
 							</div>
 
 							<div class="header-cart-buttons">
@@ -169,7 +170,7 @@
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="#" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
+									<a href="{{ route ('finalSale')}}" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
 										Finalizar
 									</a>
 								</div>
@@ -239,7 +240,7 @@
 
 								<div class="header-cart-wrapbtn">
 									<!-- Button -->
-									<a href="{{ route('home') }}" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
+									<a href="{{ route ('finalSale')}}" class="flex-c-m size1 bg1 bo-rad-5 hov1 s-text1 trans-0-4">
 										Finalizar
 									</a>
 								</div>
@@ -316,4 +317,12 @@
 	<script>
 		var elementos = document.getElementsByClassName("header-cart-item");
 		$(".header-icons-noti").text('' + elementos.length / 2);
+
+		var sum = 0;
+		$(".totProd").each(function() {
+			if (!isNaN(this.value) && this.value.length != 0) {
+				sum += parseFloat(this.value);
+			}
+		})
+		$("#totCart").val(sum);
 	</script>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Http\Client\Common\Exception\ClientErrorException;
 
@@ -107,11 +108,24 @@ class ClientController extends Controller
 	}
 
 	public function consultSale()
-	{
+	{	
 		if (!isClient()) {
 			return view('client');
 		} else {
-			return view('consultSale');
+			$dataOrder = Order::consultOrder(session('id'));
+			$data = Order::matchNodeOrder(session('id'));
+			return view('consultSale',['data' => $data->getRecords(), 'dataOrder' => $dataOrder->getRecords()]);
 		}
 	}
+	
+	// public function consultAjax(){
+	// 	$nome = "JOSE";
+	// 	return view('orderTest',['nome' => $nome]);
+	// }
+
+	public function consultAjax($id)
+    {
+        $dataOrder = Order::consultOrderProd($id);
+        return view('orderTest',['data' => $dataOrder->getRecords()]);
+    }
 }

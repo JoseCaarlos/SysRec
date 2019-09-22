@@ -34,10 +34,24 @@ class Order extends Neo4j
                                 CREATE (c)-[r:PURCHASED {date: datetime()}]->(o)
                                 WITH o,c
                                 MATCH (p:Product),(k:Order) WHERE k.compra = 0 and ID(p) in k.idPro
-                                CREATE (o)-[:ORDERS {date: datetime()}]->(p)
+                                CREATE (o)-[:ORDERS {date: datetime(), quantity:'.$rel['quantity'].'}]->(p)
                                 with p
                                 MATCH (d:Client),(d)-[:PURCHASED]->(y:Order) WHERE ID(d) = '. $rel['idCli'] .' and y.compra = 0
                                 detach delete y', $property);
         return $result;
+    }
+
+    public static function consultOrder($id){
+        $result = Neo4j::conectar()->run('MATCH (c:Client),(o:Order), (c)-[pur:PURCHASED]->(o) WHERE o.compra = 1 and ID(c) = '.$id.'
+                                    return ID(o) as idOrder, pur.date as dateOrder, o.totalOrder as totalOrder');
+        return $result;
+    }
+
+    public static function consultOrderProd($id){
+        $result = Neo4j::conectar()->run('MATCH (c:Client),(o:Order),(p:Product), (c)-[k:PURCHASED]->(o),(o)-[:ORDERS]->(p:Product) WHERE o.compra = 1 and ID(o) = '.$id.' 
+                                    return ID(p) as id, p.path_file as file,p.name as name, p.sales_price as price');
+
+        return $result;
+    
     }
 }

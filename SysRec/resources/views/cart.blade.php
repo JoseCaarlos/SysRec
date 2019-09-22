@@ -196,7 +196,7 @@
 
 			<div class="btn-addcart-product-detail size9 trans-0-4 m-t-10 m-b-10">
 				<!-- Button -->
-				<a href="{{route ('finalizar', ) }}" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+				<a href="{{route ('finalSale') }}" class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
 					Finalizar
 				</a>
 			</div>
