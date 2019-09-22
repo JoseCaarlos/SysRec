@@ -12,12 +12,12 @@ class Neo4j
         /* AddConnection: 'http://senha@servidor:porta'
          *
          */
-        /* $neo4j = ClientBuilder::create()
-            ->addConnection('default', 'http://admin:b.KYQhlicnwE6P.bpInnpTs8usCgWrQ@hobby-olcaceiiloelgbkenbhmmodl.dbs.graphenedb.com:24780/db/ecommerce/')
+        $neo4j = ClientBuilder::create()
+            ->addConnection('default', 'https://admin:b.KYQhlicnwE6P.bpInnpTs8usCgWrQ@hobby-olcaceiiloelgbkenbhmmodl.dbs.graphenedb.com:24787')
             ->build();
 
         return $neo4j;
-        */
+        /* 
         // Example for Bolt
         $config = \GraphAware\Bolt\Configuration::newInstance()
             ->withCredentials('admin', 'b.KYQhlicnwE6P.bpInnpTs8usCgWrQ')
@@ -27,6 +27,7 @@ class Neo4j
         $driver = \GraphAware\Bolt\GraphDatabase::driver('bolt://hobby-olcaceiiloelgbkenbhmmodl.dbs.graphenedb.com:24787', $config);
         $client = $driver->session();
         return $client;
+        */
     }
 
     // Cria um node Vazio

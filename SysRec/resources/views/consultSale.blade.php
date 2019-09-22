@@ -7,49 +7,51 @@
 	<section class="cart bgwhite p-t-70 p-b-100">
 		<div class="container">
 			<!-- Cart item -->
-			<div class="container-table-cart pos-relative">
-				<div class="wrap-table-shopping-cart bgwhite">
-					<!-- eu tirei o layout de tabela -->
+			<!-- eu tirei o layout de tabela -->
+			<div class="divTable">
+				<div class="divTableBody">
+					<!-- mostra o cabeçalho do pedido -->
+					<div class="divTableRow">
+						<div class="divTableCell">Numero do Pedido</div>
+						<div class="divTableCell">Data do Pedido</div>
+						<div class="divTableCell">Valor Total</div>
+						<div class="divTableCell">Teste</div>
+					</div>
 					@if(!empty($dataOrder))
 					@foreach($dataOrder as $r)
-							<!-- mostra o cabeçalho do pedido -->
-							<div class="col-md-8">Numero do Pedido: {{$r->value('idOrder')}}</div> 
-							<div class="col-md-8">Data do Pedido: {{$r->value('dateOrder')}} </div>
-							<div class="col-md-8">Valor Total: {{$r->value('totalOrder')}} </div>
-							
+					<div class="divTableRow">
+						<div class="divTableCell">{{$r->value('idOrder')}}</div>
+						<div class="divTableCell">{{$r->value('dateOrder')}}</div>
+						<div class="divTableCell">{{$r->value('totalOrder')}}</div>
+						<div class="divTableCell">
 							<!-- botão com a ID concatenada com o numero do pedido, o ID deve ser unico, não pode se repetir -->
-							<button id = "btn_detalhes_pedido_{{$r->value('idOrder')}}" onclick="exibir({{$r->value('idOrder')}})">Exibir Detalhes</button>
-							
-							<!-- esssa div mostrará os detalhes do pedido, ela inicia fechada dislay none -->
-							<div id = "div_detalhes_pedido_{{$r->value('idOrder')}}" style = "display: none">
-								<!-- trazer aqui os produtos do pedido -->
-							</div>
-							
-							<!-- coloquei o script dentro do FOREACH, assim ele irá criar uma função para cada div e cada botão gerados pelo FOREACH-->
-							<script>
-								<!-- chamada padrão do JQuery pelo document.ready -->
-								$(document).ready(function () {
-									<!-- listener do botão com o ID do pedido, igual ao que está lá na tag BUTTON -->
-									$("#btn_detalhes_pedido_{{$r->value('idOrder')}}").click(function () {
-										<!-- o evento click tem um function dentro que fará o trabalho de mostrar ou esconder a div -->
-										<!-- no estado atual capturo se a div está none ou block no momento do click -->
-										estado_atual = $("#div_detalhes_pedido_{{$r->value('idOrder')}}").css("display");
-										<!-- se estiver none troca pra block e vice versa -->
-										if (estado_atual == "none") {
-											novo_estado = "block";
-										} else {
-											novo_estado = "none";
-										}
-										<!-- atribui o novo display a div -->
-										$("#div_detalhes_pedido_{{$r->value('idOrder')}}").css("display", novo_estado);
-									});
-								})
-							</script>
+							<button id="btn_detalhes_pedido_{{$r->value('idOrder')}}" onclick="exibir({{$r->value('idOrder')}})">Exibir Detalhes</button>
 
-						@endforeach
-						@else
-							Nâo existe Pedido
-						@endif
+						</div>
+						<!-- esssa div mostrará os detalhes do pedido, ela inicia fechada dislay none -->
+						<div id="visulUsuarioModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="visulUsuarioModalLabel">Detalhes do Pedido</h5>
+										<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<span id="visul_usuario"></span>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-outline-info" data-dismiss="modal">Fechar</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					@endforeach
+					@else
+					Nâo existe Pedido
+					@endif
 				</div>
 			</div>
 		</div>
@@ -71,9 +73,10 @@
 				data: {
 					nome: id
 				}
-			}) 	
+			})
 			.done(function(msg) {
-				$(idD).append(msg);
+				$("#visul_usuario").html(msg);
+				$('#visulUsuarioModal').modal('show');
 			});
 
 	}
