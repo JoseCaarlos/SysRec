@@ -57,7 +57,7 @@ Route::post("/registrarProductSubmit","ProductController@register")->name("produ
 
 
 // Rota Cliente
-Route::any("/principal","clientController@autenticar")->name("clienteLogin");
+Route::any("/principal","clientController@index")->name("clienteLogin");
 
 Route::get("/sairCliente","clientController@logout")->name("logoutCliente");
 

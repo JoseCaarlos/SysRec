@@ -86,7 +86,7 @@ class ClientController extends Controller
 			return redirect('/produtos');
 		} else {
 			$alert = "";
-			$alert = true;
+			$alert = false;
 			return view('client', compact('alert'));
 		}
 	}

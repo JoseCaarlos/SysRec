@@ -27,7 +27,7 @@
 				<div class="col-md-6 p-b-30">
 					<form action="{{ route ('clienteLogin')}}" class="leave-comment">
 						<h4 class="m-text26 p-b-36 p-t-15">
-							Login
+							Login do Cliente
 						</h4>
 						<h6 class="m-text12 p-b-36 p-t-15">Entre e tenha uma nova experiência de consumo!</h6>
 
