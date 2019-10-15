@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Order;
+use App\Models\Product;
 use GraphAware\Bolt\Protocol\V1\Session;
 use Illuminate\Http\Request;
 
@@ -47,6 +48,10 @@ class OrderController extends Controller
 			'quantity' => 0
 		]);
 		$data = Order::finalSale($data, $rel);
+		$para = (empty(session('id'))) ? 'null' : session('id');
+        $data = Order::matchNodeOrder($para);
+        $dataRecom = Product::collaborativeFiltration(Session('id'));
+        return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
 	}
 	
 }

@@ -13,7 +13,8 @@ class HomeController extends Controller
     {
         $para = (empty(session('id'))) ? 'null' : session('id');
         $data = Order::matchNodeOrder($para);
-        return view('home', ['data' => $data->getRecords()]);
+        $dataRecom = Product::collaborativeFiltration(Session('id'));
+        return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
     }
 
     public function produto(Request $request)

@@ -26,7 +26,6 @@
 						<div class="divTableCell">
 							<!-- botão com a ID concatenada com o numero do pedido, o ID deve ser unico, não pode se repetir -->
 							<button id="btn_detalhes_pedido_{{$r->value('idOrder')}}" onclick="exibir({{$r->value('idOrder')}})">Exibir Detalhes</button>
-
 						</div>
 						<!-- esssa div mostrará os detalhes do pedido, ela inicia fechada dislay none -->
 						<div id="visulUsuarioModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

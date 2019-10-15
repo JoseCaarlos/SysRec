@@ -53,4 +53,15 @@ class Product extends Neo4j
         public static function matchNodePrice($inf, $sup){
                 $result = Neo4j::conectar()->run('match(n:Product) where n.sales_price > "'.$inf.'" and n.sales_price < "'.$sup.'" return ');
         }
+
+        //Recomendação Filtragem Colaborativa
+        public static function collaborativeFiltration($id)
+        {
+            $cypher_query = "match(c:Client), (c)-[:PURCHASED]->(o:Order{compra:1})-[:ORDERS]->(p)<-[:ORDERS]-(o2)<-[:PURCHASED]-(c2) WHERE ID(c) = ".$id."
+                                with COUNT(p.name) AS tam, ID(c2) AS id, c2 
+                                with max(c2{tam, id}['id']) as idCli
+                                match(cc:Client),(cc)-[:PURCHASED]->(o3)-[:ORDERS]->(p3) where ID(cc) = idCli
+                                return p3.path_file as file,p3.name as name, p3.sales_price as price, p3.describ as describ, ID(p3) as id";
+            return Neo4j::conectar()->run($cypher_query);
+        }
 }

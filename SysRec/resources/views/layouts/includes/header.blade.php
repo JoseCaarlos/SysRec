@@ -35,6 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/table.css">
+	<link rel="stylesheet" type="text/css" href="/css/star.css">
 	<!--==Produtos=====================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/vendor/noui/nouislider.min.css">
 	<!--==ProdutosDetalhes=============================================================================-->
@@ -42,6 +43,17 @@
 	<!--==Sweet Alert =================================================================================-->
 	<script type="text/javascript" src="/vendor/sweetalert/sweetalert.min.js"></script>
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!------ Include the above in your HEAD tag ---------->
+
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
 	<meta name="csrf-token" content="{{ csrf_token() }}" />
 
 </head>
