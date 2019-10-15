@@ -45,7 +45,7 @@ class Neo4j
     // Seleciona o node retornando nome e id
     public static function matchNode($name)
     {
-        $result =  Neo4j::conectar()->run('MATCH (n:' . $name . ') return n.name as name,id(n) as id');
+        $result =  Neo4j::conectar()->run('MATCH (n:' . $name . ') return n.name as name,id(n) as id ORDER BY n.name' );
         return $result;
     }
 
