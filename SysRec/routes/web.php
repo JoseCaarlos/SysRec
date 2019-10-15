@@ -50,10 +50,16 @@ Route::get("/registrarCategoria","CategoryController@index")->name("category");
 
 Route::post("/registrarCategoriaSubmit","CategoryController@register")->name("categoryRegister");
 
-// Rota Produtos
+// Rota Produtos -> Informar dados para cadastrar.
 Route::get("/registrarProdutos","ProductController@product")->name("product");
-
+// Rota Produtos -> Salvar no banco os dados cadastrados.
 Route::post("/registrarProductSubmit","ProductController@register")->name("productRegister");
+// Rota Produtos -> Selecionar produto pra edição.
+Route::get("/selecionarProdutoParaEdicao", "ProductController@selection")->name("productSelection");
+// Rota Produto -> Modificar os dados desejados
+// Route::get("/editarProdutos", "ProductController@edit")->name("productEdit");
+
+    
 
 
 // Rota Cliente

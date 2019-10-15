@@ -28,6 +28,7 @@
 					<h5 m-text20 p-b-36 p-t-15>Produtos</h5>
 					<ul>
 						<li style="padding-left:2em"><a href="{{ route('product') }}">Cadastrar</a></li>
+						<li style="padding-left:2em"><a href="{{ route('productSelection') }}">Editar</a></li>
 					</ul>
 
 				<hr>

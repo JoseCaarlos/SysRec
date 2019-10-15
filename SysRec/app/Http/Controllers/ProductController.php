@@ -42,11 +42,21 @@ class ProductController extends Controller
 		if ($request->hasFile('primaryImage')) {
 			//foreach ($request->primaryImage as $image) {
 				$data['infos']['path_file'] = $repo->saveImage($request->primaryImage, $request->get("name"), 'products', 1080);
-				
-			//}
 		}
+
 		Product::createNodeProductProperty("Product", $data, $rel);
 		return $data;
+	}
+
+
+	public function selection(){
+		$dataProduct = Product::matchNode("Product");
+		$strProduct = "";
+		foreach ($dataProduct->getrecords() as $r) :
+			$strProduct .= "\n\t\t\t\t\t\t\t\t<option value='" . $r->value('id') . "'>" . $r->value('name') . "</option>";
+		endforeach;
+
+		return view('selectionProduct', compact('strProduct'));
 	}
 
 	public function product()

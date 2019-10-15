@@ -58,12 +58,6 @@
 
 				<ul>
 					<li class="p-b-9">
-						<a href="#" class="s-text7">
-							Pesquisar
-						</a>
-					</li>
-
-					<li class="p-b-9">
 						<a href="{{route ('about')}}" class="s-text7">
 							Sobre 
 						</a>
