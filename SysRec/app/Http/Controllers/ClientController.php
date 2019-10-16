@@ -68,12 +68,9 @@ class ClientController extends Controller
 
 	public function autenticar(Request $request)
 	{
-
 		$u = $request->input("name");
 		$p = $request->input("password");
 		$auth = new Client();
-
-
 		if ($auth->autenticar($u, $p) or isClient() == true) {
 			$dados = Client::dados($u, $p);
 			$r = $dados->getRecord();
@@ -85,8 +82,7 @@ class ClientController extends Controller
 			}
 			return redirect('/produtos');
 		} else {
-			$alert = "";
-			$alert = false;
+			$alert = true;
 			return view('client', compact('alert'));
 		}
 	}

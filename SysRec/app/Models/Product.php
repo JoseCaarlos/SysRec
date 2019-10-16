@@ -57,11 +57,21 @@ class Product extends Neo4j
         //Recomendação Filtragem Colaborativa
         public static function collaborativeFiltration($id)
         {
-            $cypher_query = "match(c:Client), (c)-[:PURCHASED]->(o:Order{compra:1})-[:ORDERS]->(p)<-[:ORDERS]-(o2)<-[:PURCHASED]-(c2) WHERE ID(c) = ".$id."
+                $cypher_query = "match(c:Client), (c)-[:PURCHASED]->(o:Order{compra:1})-[:ORDERS]->(p)<-[:ORDERS]-(o2)<-[:PURCHASED]-(c2) WHERE ID(c) = ".$id."
                                 with COUNT(p.name) AS tam, ID(c2) AS id, c2 
                                 with max(c2{tam, id}['id']) as idCli
                                 match(cc:Client),(cc)-[:PURCHASED]->(o3)-[:ORDERS]->(p3) where ID(cc) = idCli
                                 return p3.path_file as file,p3.name as name, p3.sales_price as price, p3.describ as describ, ID(p3) as id";
             return Neo4j::conectar()->run($cypher_query);
+        }
+
+        //Recomendação dos mais vendidos
+        public static function bestSellers(){
+                $cypher_query = "match(p:Product),(o:Order),(o)-[r:ORDERS]->(p)
+                                        return COUNT(o) as qtd, p.path_file as file,p.name as name, p.sales_price as price, p.describ as describ, ID(p) as id
+                                        ORDER BY qtd
+                                        DESC
+                                        LIMIT 20";
+                return Neo4j::conectar()->run($cypher_query);                         
         }
 }

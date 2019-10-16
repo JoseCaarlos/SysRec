@@ -11,9 +11,16 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $para = (empty(session('id'))) ? 'null' : session('id');
-        $data = Order::matchNodeOrder($para);
-        $dataRecom = Product::collaborativeFiltration(Session('id'));
+        if (!empty(session('id'))) {
+            $para = (empty(session('id'))) ? 'null' : session('id');
+            $data = Order::matchNodeOrder($para);
+            $dataRecom = Product::collaborativeFiltration(Session('id'));
+            return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
+        }else{
+            $para = (empty(session('id'))) ? 'null' : session('id');
+            $data = Order::matchNodeOrder($para);
+            $dataRecom = Product::bestSellers();
+        }
         return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
     }
 
@@ -79,17 +86,13 @@ class HomeController extends Controller
 
     public function client()
     {
-        if (!isClient())
-		{	
-			return view('client');
-		}
-		else 
-		{
+        if (!isClient()) {
+            return view('client');
+        } else {
             $para = (empty(session('id'))) ? 'null' : session('id');
             $data = Order::matchNodeOrder($para);
             return view('clientPanel', ['data' => $data->getRecords()]);
-		}
-
+        }
     }
 
     public function register()

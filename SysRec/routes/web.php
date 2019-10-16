@@ -63,7 +63,7 @@ Route::get("/selecionarProdutoParaEdicao", "ProductController@selection")->name(
 
 
 // Rota Cliente
-Route::any("/principal","clientController@index")->name("clienteLogin");
+Route::any("/principal","clientController@autenticar")->name("clienteLogin");
 
 Route::get("/sairCliente","clientController@logout")->name("logoutCliente");
 

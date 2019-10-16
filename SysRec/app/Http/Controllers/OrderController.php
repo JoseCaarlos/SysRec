@@ -50,7 +50,7 @@ class OrderController extends Controller
 		$data = Order::finalSale($data, $rel);
 		$para = (empty(session('id'))) ? 'null' : session('id');
         $data = Order::matchNodeOrder($para);
-        $dataRecom = Product::collaborativeFiltration(Session('id'));
+		$dataRecom = Product::collaborativeFiltration(Session('id'));
         return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
 	}
 	
