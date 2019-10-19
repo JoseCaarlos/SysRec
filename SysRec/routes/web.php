@@ -80,8 +80,14 @@ Route::any("/painelAdmin","AdminController@autenticar")->name("adminPanel");
 
 Route::get("/sairAdmin","AdminController@logout")->name("logout");
 
+Route::get("/frete/{cep}", "CartController@frete");
 
 
+// Rota Avaliação
+
+Route::get("/avaliacaoProduto/{id}", "ClientController@avaliacaoProduto")->name("avaliacaoProduto");
+
+Route::post("/avaliacaoProduto", "ClientController@resultadoAvaliacao")->name("resultadoAvaliacao");
 
  Route::get('/graph', function () {
 

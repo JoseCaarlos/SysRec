@@ -13,12 +13,14 @@ class CartController extends Controller
     {
         if (!empty(session('id'))) {
             $result = Order::matchNodeOrder(session('id'));
-            if(!empty($result)){
+            $aux = $result->getRecords();
+            if(!empty($aux)){
                 $data = empty($result) ? null : $result->getRecords();
                 $dataRel = empty($result) ? null : Product::matchNodeRel($result->getRecord()->value('idP'));
                 return view('cart', ['data' => $data, 'dataRel' => $dataRel->getRecords()]);
             }else{
-                return view('cart', ['data' => null, 'dataRel' => null]);
+                $dataRel = Product::bestSellers();
+                return view('cart', ['data' => null, 'dataRel' => $dataRel->getRecords()]);
             }
             
         }else{
@@ -34,5 +36,10 @@ class CartController extends Controller
         );
         Order::deleteNode($node, true);
         return redirect('carrinho');
+    }
+
+    public function frete($cep){
+        $cep = array('cep' => $cep);
+        return view('calculaCep', $cep);
     }
 }

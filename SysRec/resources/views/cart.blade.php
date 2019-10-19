@@ -74,22 +74,22 @@
 							</div>
 						</td>
 						<td class="column-2">{{ $r->value('name') }}</td>
-						<td class="column-3"><input style="background-color:transparent;" name="precoUni" type="number" disabled value="{{$r->value('price')}}"></td>
+						<td class="column-3"><input style="background-color:transparent;" id="precoUni{{$r->value('idP')}}" name="precoUni" type="number" disabled value="{{ number_format($r->value('price'), 2) }}"></td>
 						<td class="column-4" align="center">
 							<div class="flex-w bo5 of-hidden w-size17">
-								<button class="btn-num-product-down color1 flex-c-m size7 bg8 eff2">
+								<button id="menos{{ $r->value('idP')}}" onclick="menos('<?php echo ($r->value('idP')); ?>')" class="btn-num-product-down color1 flex-c-m size7 bg8 eff2 monitora">
 									<i class="fs-12 fa fa-minus" aria-hidden="true"></i>
 								</button>
 
-								<input class="size8 m-text18 t-center num-product" id="qtd" type="number" name="num-product1" value="1">
+								<input class="size8 m-text18 t-center num-product" id="qtd{{ $r->value('idP')}}" type="number" name="num-product1" value="1">
 
-								<button class="btn-num-product-up color1 flex-c-m size7 bg8 eff2">
+								<button id="mais{{ $r->value('idP')}}" class="btn-num-product-up color1 flex-c-m size7 bg8 eff2 monitora" onclick="soma('<?php echo ($r->value('idP')); ?>')">
 									<i class="fs-12 fa fa-plus" aria-hidden="true"></i>
 								</button>
 							</div>
 							<a href="{{route ('cartExcluir', $r->value('idOrder')) }}">Excluir</a>
 						</td>
-						<td class="column-5"><input style="background-color:transparent;" type="number" class="totProd" id="totProod" disabled value=""></td>
+						<td class="column-5"><input style="background-color:transparent;" id="totProod{{ $r->value('idP') }}" type="number" class="totProd" disabled value="{{ number_format($r->value('price'), 2) }}"></td>
 					</tr>
 					@endforeach
 					@else
@@ -106,12 +106,12 @@
 		<div class="flex-w flex-sb-m p-t-25 p-b-25 bo8 p-l-35 p-r-60 p-lr-15-sm">
 			<div class="flex-w flex-m w-full-sm">
 				<div class="size11 bo4 m-r-10">
-					<input class="sizefull s-text7 p-l-22 p-r-22" type="text" name="coupon-code" placeholder="Coupon Code">
+					<input class="sizefull s-text7 p-l-22 p-r-22" type="text" id="descontoPerc" value="" name="coupon-code" placeholder="Coupon Code">
 				</div>
 
 				<div class="size12 trans-0-4 m-t-10 m-b-10 m-r-10">
 					<!-- Button -->
-					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+					<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4" onclick="desconto()">
 						Apply coupon
 					</button>
 				</div>
@@ -134,11 +134,21 @@
 			<!--  -->
 			<div class="flex-w flex-sb-m p-b-12">
 				<span class="s-text18 w-size19 w-full-sm">
-					Subtotal:
+					Desconto:
 				</span>
 
 				<span class="m-text21 w-size20 w-full-sm">
-					<input style="background-color:transparent;" id="subTot" type="number" disabled value="">
+					<input style="background-color:transparent;" id="desconto" type="number" disabled value="">
+				</span>
+			</div>
+
+			<!--  -->
+			<div class="flex-w flex-sb-m p-b-12">
+				<span class="s-text18 w-size19 w-full-sm">
+					Subtotal:
+				</span>
+				<span class="m-text21 w-size20 w-full-sm">
+					<input style="background-color:transparent;" class="total" id="subTot" type="number" disabled value="">
 				</span>
 			</div>
 
@@ -157,26 +167,16 @@
 						Calculate Shipping
 					</span>
 
-					<div class="rs2-select2 rs3-select2 rs4-select2 bo4 of-hidden w-size21 m-t-8 m-b-12">
-						<select class="selection-2" name="country">
-							<option>Select a country...</option>
-							<option>US</option>
-							<option>UK</option>
-							<option>Japan</option>
-						</select>
-					</div>
-
-					<div class="size13 bo4 m-b-12">
-						<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="state" placeholder="State /  country">
-					</div>
-
 					<div class="size13 bo4 m-b-22">
-						<input class="sizefull s-text7 p-l-15 p-r-15" type="text" name="postcode" placeholder="Postcode / Zip">
+						<input class="sizefull s-text7 p-l-15 p-r-15" type="text" id="cep" name="postcode" placeholder="Postcode / Zip">
 					</div>
 
+					<div id="retorno">
+
+					</div>
 					<div class="size14 trans-0-4 m-b-10">
 						<!-- Button -->
-						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4">
+						<button class="flex-c-m sizefull bg1 bo-rad-23 hov1 s-text1 trans-0-4 monitora" id="freteValor" onclick="calculo()">
 							Update Totals
 						</button>
 					</div>
@@ -190,7 +190,7 @@
 				</span>
 
 				<span class="m-text21 w-size20 w-full-sm">
-					$39.00
+					<input style="background-color:transparent;" id="total" type="text" disabled value>
 				</span>
 			</div>
 
@@ -204,27 +204,96 @@
 	</div>
 </section>
 <script>
+	sum = 0;
+	tam = 0;
+	array = document.getElementsByClassName('totProd');
+	tam = (array.length / 2);
+	while (tam <= (array.length - 1)) {
+		sum += parseFloat(array[tam].value);
+		tam += 1;
 
-	var sumP = 0;
-	var p = 0;
-	var q = 0;
-	$(".table-row").each(function () {
-            if (true) {
-				q = $(this).find('input[name=num-product1]').val();
-				p = $(this).find('input[name=precoUni]').val();
-				sumP = parseFloat(q) * parseFloat(p);
+	}
+	subTot = document.getElementById("subTot").value = sum.toFixed(2);
+	document.getElementById("total").value = sum.toFixed(2);
+
+	function soma(id) {
+		sum = 0;
+		tam = 0;
+		var qtdAtual = document.getElementById("qtd".concat(id));
+		let precoUni = document.getElementById("precoUni".concat(id));
+		var totProod = document.getElementById("totProod".concat(id));
+		totProod.value = (precoUni.value * (parseInt(qtdAtual.value) + 1)).toFixed(2);
+		array = document.getElementsByClassName('totProd');
+		tam = (array.length / 2);
+		while (tam <= (array.length - 1)) {
+			sum += parseFloat(array[tam].value);
+			tam += 1;
+
+		}
+		subTot = document.getElementById("subTot").value = sum.toFixed(2);
+	}
+
+	function menos(id) {
+		sum = 0;
+		tam = 0;
+		var qtdAtual = document.getElementById("qtd".concat(id));
+		let precoUni = document.getElementById("precoUni".concat(id));
+		var totProod = document.getElementById("totProod".concat(id));
+		if (qtdAtual.value > 1) {
+			totProod.value = (precoUni.value * (parseInt(qtdAtual.value) - 1)).toFixed(2);
+		}
+		array = document.getElementsByClassName('totProd');
+		tam = (array.length / 2);
+		while (tam <= (array.length - 1)) {
+			sum += parseFloat(array[tam].value);
+			tam += 1;
+
+		}
+		subTot = document.getElementById("subTot").value = sum.toFixed(2);
+	}
+
+	function desconto() {
+		var subTot = document.getElementById("subTot")
+		valorAnterior = subTot.value;
+		//document.getElementById("subTot").value = (subTot.value) * (1 - (parseInt(document.getElementById("descontoPerc").value) / 100));
+		document.getElementById("subTot").value = ((subTot.value) * (1 - (10) / 100)).toFixed(2);
+		document.getElementById("desconto").value = (valorAnterior - (document.getElementById("subTot").value)).toFixed(2);
+	}
+
+	function calculo() {
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 			}
-			$(".totProd").val(sumP);
+		});
+
+		var cep = $("#cep").val();
+		var url = "/frete/" + cep;
+		$.ajax({
+				url: url,
+				type: 'GET',
+				data: {
+					cep: cep
+				}
+			})
+			.done(function(msg) {
+				$("#retorno").html(msg);
+				document.getElementById("freteValor").click();
+			});
+	}
+
+	$(document).ready(function (){
+		$(".monitora").click(function (){
+			sum = 0;
+			$(".total").each(function(){
+				sum += parseFloat($(this).val());
+			});
+			document.getElementById("total").value = sum.toFixed(2);
+		});
 	});
-	
 
-
-	var sum = 0;
-	$(".totProd").each(function () {
-            if (!isNaN(this.value) && this.value.length != 0) {
-                sum += parseFloat(this.value);
-            }
-		})
-	$("#subTot").val(sum);
+	function alerta(){
+		swal('Aguarde');
+	}
 </script>
 @endsection

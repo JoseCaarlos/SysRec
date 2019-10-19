@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Http\Client\Common\Exception\ClientErrorException;
 
@@ -104,24 +105,62 @@ class ClientController extends Controller
 	}
 
 	public function consultSale()
-	{	
+	{
 		if (!isClient()) {
 			return view('client');
 		} else {
 			$dataOrder = Order::consultOrder(session('id'));
 			$data = Order::matchNodeOrder(session('id'));
-			return view('consultSale',['data' => $data->getRecords(), 'dataOrder' => $dataOrder->getRecords()]);
+			return view('consultSale', ['data' => $data->getRecords(), 'dataOrder' => $dataOrder->getRecords()]);
 		}
 	}
-	
+
 	// public function consultAjax(){
 	// 	$nome = "JOSE";
 	// 	return view('orderTest',['nome' => $nome]);
 	// }
 
 	public function consultAjax($id)
-    {
-        $dataOrder = Order::consultOrderProd($id);
-        return view('orderTest',['data' => $dataOrder->getRecords()]);
-    }
+	{
+		$dataOrder = Order::consultOrderProd($id);
+		return view('orderTest', ['data' => $dataOrder->getRecords()]);
+	}
+
+	public function avaliacaoProduto($id)
+	{
+		if (isClient() == true) {
+			$valida = True;
+			$dados = ([
+				"idCli" => session('id'),
+				"idProd" => $id
+			]);
+			if (Client::compraProduto($dados)) {
+				$valida = "comprou";
+				if (Client::verificaAvaliacao($dados)) {
+					$valida = "avaliado";
+				}
+			}
+			var_dump(Client::compraProduto($dados), Client::verificaAvaliacao($dados));
+			$p = Product::matchNodeId("Product", $id);
+			return view('avaliacao', ['p' => $p->getRecord(), 'valida' => $valida]);
+		} else {
+			$alert = true;
+			return view('client', compact('alert'));
+		}
+	}
+
+
+	public function resultadoAvaliacao(Request $request)
+	{
+		$rel = ([
+			'avaliacao' => $request->input("avaliacao"),
+			'recomenda' => $request->input("recomenda"),
+			'opiniao' => $request->input("opiniao")
+		]);
+		$dados = ([
+			'idCli' => session('id'),
+			'idProd' => $request->input('idProd')
+		]);
+		Client::gravaAvaliacao($rel, $dados);
+	}
 }

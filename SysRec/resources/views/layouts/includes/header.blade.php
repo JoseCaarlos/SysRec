@@ -35,7 +35,7 @@
 	<link rel="stylesheet" type="text/css" href="/css/util.css">
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link rel="stylesheet" type="text/css" href="/css/table.css">
-	<link rel="stylesheet" type="text/css" href="/css/star.css">
+	<link rel="stylesheet" type="text/css" href="/css/estrelas.css">
 	<!--==Produtos=====================================================================================-->
 	<link rel="stylesheet" type="text/css" href="/vendor/noui/nouislider.min.css">
 	<!--==ProdutosDetalhes=============================================================================-->

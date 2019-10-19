@@ -53,16 +53,41 @@
         </div>
 
         <div class="w-size14 p-t-30 respon5">
-            <h4 class="product-detail-name m-text16 p-b-13">
+            <h4 class="product-detail-name m-text16 p-b-1">
                 {{ $p->value('name') }}
             </h4>
+            <div class="vote">
+                <input type="hidden" id="valorAvaliacao" value="3">
+                <label>
+                    <input type="radio" name="fb" value="1" />
+                    <i class="fa"></i>
+                </label>
+                <label>
+                    <input type="radio" name="fb" value="2" />
+                    <i class="fa"></i>
+                </label>
+                <label>
+                    <input type="radio" name="fb" value="3" />
+                    <i class="fa"></i>
+                </label>
+                <label>
+                    <input type="radio" name="fb" value="4" />
+                    <i class="fa"></i>
+                </label>
+                <label>
+                    <input type="radio" name="fb" value="5" />
+                    <i class="fa"></i>
+                </label>
+                <br>
+                <a href="{{route ('avaliacaoProduto', $p->value('id') )}}">Avalie</a>
+            </div>
+            
+
+
 
             <span class="m-text17">
                 R$ {{ $p->value('price') }}
             </span>
-            <div class="container">
-                <input id="input-1" name="input-1" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2">
-            </div>
 
             <!--  -->
             <div class="p-t-33 p-b-60">
@@ -274,4 +299,19 @@
         </div>
     </div>
 </section>
+<script>
+    v = 1
+    //percorrer todas as estrelas
+    $('.vote label i.fa').each(function() {
+        /* checar de o valor clicado é menor ou igual do input atual
+         *  se sim, adicionar classe active
+         */
+         //valor = parseInt(document.getElementById("valorAvaliacao").value);
+        if (v <= parseInt(document.getElementById("valorAvaliacao").value)) {
+            $(this).addClass('active');
+            v += 1;
+        }
+    });
+
+</script>
 @endsection
