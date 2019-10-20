@@ -9,7 +9,7 @@
 					<div class="leftbar p-r-20 p-r-0-sm">
 						<!--  -->
 						<h4 class="m-text14 p-b-7">
-							Categories
+							Categorias
 						</h4>
 						<ul class="p-b-54">
 							<li class="p-t-4">
@@ -27,12 +27,12 @@
 						</ul>
 						<!--  -->
 						<h4 class="m-text14 p-b-32">
-							Filters
+							Filtros
 						</h4>
 
 						<div class="filter-price p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-17">
-								Price
+								Preço
 							</div>
 
 							<div class="wra-filter-bar">
@@ -43,19 +43,19 @@
 								<div class="w-size11">
 									<!-- Button -->
 									<a href="" class="flex-c-m size4 bg7 bo-rad-15 hov1 s-text14 trans-0-4">
-										Filter
+										Filtro
 									</a>
 								</div>
 
 								<div class="s-text3 p-t-10 p-b-10">
-									Range: $<span id="value-lower" value="">610</span> - $<span id="value-upper" value="">980</span>
+									Entre: R$<span id="value-lower" value="">610</span> - R$<span id="value-upper" value="">980</span>
 								</div>
 							</div>
 						</div>
 
 						<div class="filter-color p-t-22 p-b-50 bo3">
 							<div class="m-text15 p-b-12">
-								Color
+								Cores
 							</div>
 
 							<ul class="flex-w">
@@ -112,21 +112,21 @@
 						<div class="flex-w">
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
-									<option>Default Sorting</option>
-									<option>Popularity</option>
-									<option>Price: low to high</option>
-									<option>Price: high to low</option>
+									<option>Ordenação Padrão</option>
+									<option>Popularidade</option>
+									<option>Preço: mais baixo até mais caro</option>
+									<option>Preço: mais caro até mais baixo</option>
 								</select>
 							</div>
 
 							<div class="rs2-select2 bo4 of-hidden w-size12 m-t-5 m-b-5 m-r-10">
 								<select class="selection-2" name="sorting">
-									<option>Price</option>
-									<option>$0.00 - $50.00</option>
-									<option>$50.00 - $100.00</option>
-									<option>$100.00 - $150.00</option>
-									<option>$150.00 - $200.00</option>
-									<option>$200.00+</option>
+									<option>Preços</option>
+									<option>R$0,0 - $50,00</option>
+									<option>R$50,00 - $100,00</option>
+									<option>R$100,00 - $150,00</option>
+									<option>R$150,00 - $200,00</option>
+									<option>R$200,00+</option>
 
 								</select>
 							</div>
@@ -156,7 +156,7 @@
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<a href="{{ route ('cartId', $r->value('id')) }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Add to Cart
+												Comprar
 											</a>
 										</div>
 									</div>

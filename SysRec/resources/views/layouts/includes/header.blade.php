@@ -92,21 +92,14 @@
 					<nav class="menu">
 						<ul class="main_menu">
 							<li>
-								<a href="index.html">Categorias</a>
+								<a href="">Categorias</a>				
 								<ul class="sub_menu">
-									<li><a href="index.html">Homens</a></li>
-									<li><a href="home-02.html">Mulheres</a></li>
-									<li><a href="home-03.html">Roupas</a></li>
-									<li><a href="home-03.html">Óculos</a></li>
+									<?php echo getCategoryList(); ?>
 								</ul>
 							</li>
 
 							<li>
 								<a href="{{ route('produto') }}">Produtos</a>
-							</li>
-
-							<li class="sale-noti">
-								<a href="product.html">Ofertas</a>
 							</li>
 
 							<li>

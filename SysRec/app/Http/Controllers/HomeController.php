@@ -21,6 +21,7 @@ class HomeController extends Controller
             $data = Order::matchNodeOrder($para);
             $dataRecom = Product::bestSellers();
         }
+        
         return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
     }
 
@@ -48,7 +49,8 @@ class HomeController extends Controller
     {
         $para = (empty(session('id'))) ? 'null' : session('id');
         $data = Order::matchNodeOrder($para);
-        return view('about', ['data' => $data->getRecords()]);
+
+        return view('about', ['data' => $data->getRecords()] );
     }
 
     public function contact()
