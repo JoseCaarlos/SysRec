@@ -57,11 +57,9 @@ Route::post("/registrarProductSubmit","ProductController@register")->name("produ
 // Rota Produtos -> Selecionar produto pra edição.
 Route::get("/selecionarProdutoParaEdicao", "ProductController@selection")->name("productSelection");
 // Rota Produto -> Modificar os dados desejados
-// Route::get("/editarProdutos", "ProductController@edit")->name("productEdit");
+ Route::get("/editarProdutos", "ProductController@edit")->name("productEdit");
 
     
-
-
 // Rota Cliente
 Route::any("/principal","clientController@autenticar")->name("clienteLogin");
 
@@ -89,7 +87,7 @@ Route::get("/avaliacaoProduto/{id}", "ClientController@avaliacaoProduto")->name(
 
 Route::post("/avaliacaoProduto", "ClientController@resultadoAvaliacao")->name("resultadoAvaliacao");
 
- Route::get('/graph', function () {
+Route::get('/graph', function () {
 
 //     $prop = ([
 //         'infos' => ['name' => 'Geladeira', 'Price' => 4000.00]

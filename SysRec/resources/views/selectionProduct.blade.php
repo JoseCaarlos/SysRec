@@ -5,7 +5,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 p-b-30">
-					<form id="formfield" class="leave-comment" method="POST" enctype="multipart/form-data">
+					<form id="formfield" class="leave-comment" method="POST" action="{{ route('productEdit') }}">
 					@csrf
 						<h4 class="m-text26 p-b-36 p-t-15">
 							Edição de Produto
@@ -15,7 +15,7 @@
 						<p>Selecione o produto que deseja alterar</p>
 						<div class="bo4 of-hidden size15 m-b-20">
 							<select  class="sizefull s-text7 p-l-22 p-r-22" name='product_id' id ="product">
-								<option value="" selected disabled hidden>Selecione uma categoria</option>
+								<option value="" selected disabled hidden>Selecione um Produto</option>
 								<?php echo $strProduct."\n" ?>                              
 							</select>
 						</div>

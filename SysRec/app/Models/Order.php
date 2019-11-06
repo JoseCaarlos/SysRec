@@ -20,6 +20,7 @@ class Order extends Neo4j
                                         MATCH (p:Product) WHERE ID(p) in [id] return ID(p) as idP, p.path_file as file,p.name as name, p.sales_price as price, p.describ as describ, idOrder', $property);
             return $result;
     }
+    
     public static function matchNodeOrder($id){
         $result = Neo4j::conectar()->run('MATCH(c:Client),(o:Order), (c)-[:PURCHASED]->(o) WHERE o.compra = 0 and ID(c) = '. $id .'
                                     WITH o.idPro as id, ID(o) as idOrder
