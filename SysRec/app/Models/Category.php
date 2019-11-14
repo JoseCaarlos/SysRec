@@ -19,4 +19,11 @@ class Category extends Neo4j
         $result =  Neo4j::conectar()->run('MATCH (n:' . $name . ') return n.name as name,id(n) as id');
         return $result;
     }
+
+    //Seleciona Node pelo ID, retornando tudo
+    public static function matchNodeId($name, $id)
+    {
+        $result =  Neo4j::conectar()->run('MATCH (n:' . $name . ') where ID(n) = ' . $id . ' return ID(n) as id,n.name as name');
+        return $result;
+    }
 }

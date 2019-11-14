@@ -16,12 +16,14 @@
 					<h5 m-text20 p-b-36 p-t-15>Fornecedores</h5>
 					<ul>
 						<li style="padding-left:2em"><a href="{{ route('supplier') }}">Cadastrar</a></li>
+						<li style="padding-left:2em"><a href="{{ route('supplierSelection') }}">Editar</a></li>
 					</ul>
 
 					<!-- Category's List -->
 					<h5 m-text20 p-b-36 p-t-15>Categorias de Produtos</h5>
 					<ul>
 						<li style="padding-left:2em"><a href="{{ route('category') }}">Cadastrar</a></li>
+						<li style="padding-left:2em"><a href="{{ route('categorySelection') }}">Editar</a></li>
 					</ul>
 
 					<!-- Product's List -->

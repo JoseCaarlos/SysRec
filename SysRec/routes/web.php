@@ -54,10 +54,38 @@ Route::post("/registrarCategoriaSubmit","CategoryController@register")->name("ca
 Route::get("/registrarProdutos","ProductController@product")->name("product");
 // Rota Produtos -> Salvar no banco os dados cadastrados.
 Route::post("/registrarProductSubmit","ProductController@register")->name("productRegister");
+
+// Rota Produtos -> Salvar no banco os dados cadastrados.
+Route::post("/registrarProductSubmitUpdate","ProductController@update")->name("productUpdate");
+
 // Rota Produtos -> Selecionar produto pra edição.
 Route::get("/selecionarProdutoParaEdicao", "ProductController@selection")->name("productSelection");
+
 // Rota Produto -> Modificar os dados desejados
  Route::get("/editarProdutos", "ProductController@edit")->name("productEdit");
+
+
+
+ // Rota Produto -> Selecionar os produtos através da Categoria
+Route::get("selecionarProdutoParaEdicao/categoria/{category}", "ProductController@filterProductCategory");
+
+Route::get("selecionarProdutoParaEdicao/produto/{id_produto}","ProductController@findProduct");
+
+// Rota Produtos -> Selecionar produto pra edição.
+Route::get("/selecionarCategoriaParaEdicao", "CategoryController@selection")->name("categorySelection");
+
+ // Rota Categoria -> Selecionar a  Categoria
+ Route::get("/selecionarCategoriaParaEdicao/categoria/{category}", "CategoryController@findCategory");
+
+  // Rota Category -> Modificar os dados desejados
+  Route::get("/editarCategorias", "CategoryController@edit")->name("categoryEdit");
+
+ // Rota Fornecedor -> Selecionar fornecedor
+ Route::get("  /selecionarFornecedorParaEdicao/Fornecedor/{supplier}", "SupplierController@findSupplier");
+
+ // Rota Fornecedor -> Selecionar Fornecedor pra edição.
+Route::get("/selecionarFornecedorParaEdicao", "SupplierController@selection")->name("supplierSelection");
+
 
     
 // Rota Cliente

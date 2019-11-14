@@ -21,6 +21,10 @@ class Product extends Neo4j
                                     RETURN *', $property);
         }
 
+        public static function alterNodeProductProperty($property){
+                Neo4j::conectar()->run('');
+        }
+
         public static function matchNodeProduct($name)
         {
                 $result =  Neo4j::conectar()->run('MATCH (n:' . $name . ') return n.name as name,
@@ -39,7 +43,7 @@ class Product extends Neo4j
         //Seleciona Node pelo ID, retornando tudo
         public static function matchNodeId($name, $id)
         {
-                $result =  Neo4j::conectar()->run('MATCH (n:' . $name . '),(n)-[:PART_OF]->(k) where ID(n) = ' . $id . ' return ID(n) as id, n.path_file as file,n.name as name, n.sales_price as price, n.describ as describ, k.name as category, ID(k) as catId');
+                $result =  Neo4j::conectar()->run('MATCH (n:' . $name . '),(n)-[:PART_OF]->(k) where ID(n) = ' . $id . ' return ID(n) as id, n.path_file as file,n.name as name, n.sales_price as price, n.describ as describ, k.name as category, ID(k) as catId, n.supplier_id as supId, n.costs_price as costs_price,n.width as width, n.weight as weight, n.height as height, n.depth as depth, n.sac as sac');
                 return $result;
         }
 

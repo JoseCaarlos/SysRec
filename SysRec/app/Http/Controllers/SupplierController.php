@@ -54,5 +54,16 @@ class SupplierController extends Controller
 			return view('supplier', compact('success'));
 		}
 	}
+
+	public function selection(){
+		$supplier = Supplier::matchNode("Supplier");
+		return view('selectionSupplier',['supplier' => $supplier->getRecords()]);
+	}
+
+	public function findSupplier($supplier){
+		$supplier = Supplier::matchNodeId("Supplier", $supplier);
+		return view('editSupplier', ["supplier" => $supplier->getRecord()]);
+									
+	}
 }
 

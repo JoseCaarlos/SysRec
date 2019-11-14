@@ -40,4 +40,20 @@ class CategoryController extends Controller
 			return view('category', compact('success'));
 		}
 	}
+
+	public function filterProductCategory($category){
+		$product = Product::matchNodeProductCat("Product",$category);
+		return view('editProduct', ['product' => $product->getRecords(),"type" => "filterProduct"]);
+	}
+
+	public function findCategory($category){
+		$category = Category::matchNodeId("Category", $category);
+		return view('editCategory', ["category" => $category->getRecord()]);
+									
+	}
+
+	public function selection(){
+		$category = Category::matchNode("Category");
+		return view('selectionCategory',['category' => $category->getRecords()]);
+	}
 }
