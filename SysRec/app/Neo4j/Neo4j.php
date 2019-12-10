@@ -13,7 +13,7 @@ class Neo4j
          *
          */
         $neo4j = ClientBuilder::create()
-            ->addConnection('default', 'https://jose:b.5jATPcGyHMeg.y3KzmASqk3oT7iMe@hobby-olcaceiiloelgbkenbhmmodl.dbs.graphenedb.com:24787')
+            ->addConnection('default', 'https://neo4j:1234@localhost:7473')
             ->build();
 
         return $neo4j;

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Order;
+use App\Models\Client;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,8 @@ class HomeController extends Controller
         if (!empty(session('id'))) {
             $para = (empty(session('id'))) ? 'null' : session('id');
             $data = Order::matchNodeOrder($para);
-            $dataRecom = Product::collaborativeFiltration(Session('id'));
+            $recom = Client::cosineSimilarity(Session('id'))->getRecord()->value('recom');
+            $dataRecom = Product::collaborativeFiltration($recom);
             return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
         }else{
             $para = (empty(session('id'))) ? 'null' : session('id');
@@ -42,7 +44,8 @@ class HomeController extends Controller
         $dataRel = Product::matchNodeRel($id);
         $para = (empty(session('id'))) ? 'null' : session('id');
         $data = Order::matchNodeOrder($para);
-        return view('productDetail', ['p' => $p->getRecord(), 'dataRel' => $dataRel->getRecords(), 'data' => $data->getRecords()]);
+        $avaliacao = Product:: productRating($id);
+        return view('productDetail', ['p' => $p->getRecord(), 'dataRel' => $dataRel->getRecords(), 'data' => $data->getRecords(), 'rating' => $avaliacao->getRecord()]);
     }
 
     public function about()

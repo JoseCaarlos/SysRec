@@ -78,4 +78,11 @@ class Product extends Neo4j
                                         LIMIT 20";
                 return Neo4j::conectar()->run($cypher_query);                         
         }
+
+        public static function productRating($id){
+                $cypher_query = "match(p:Product), (:Client)-[r:RATING]-(p) where ID(p) = ". $id ." return avg(r.rating) as rat";
+                return Neo4j::conectar()->run($cypher_query);                         
+        }
+
+
 }

@@ -18,7 +18,7 @@
 						@csrf
 							<h4 class="m-text26 p-b-36 p-t-15">
 								Registro de Produto
-							</h4>
+							</h4>	
 							<!-- Nome -->
 							<p>Nome</p>
 							<div class="bo4 of-hidden size15 m-b-20">

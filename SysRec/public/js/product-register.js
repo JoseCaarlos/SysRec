@@ -14,6 +14,11 @@ $(document).ready(function($){
 	}
 	};
 	$('.sp_celphones').mask(SPMaskBehavior, spOptions);
+
+	$('#submit').click(function(){
+		/* when the submit button in the modal is clicked, submit the form */
+		$('.money').mask("####.##");
+	});
 });
 	
 /* Load JavaScript only after document */
@@ -24,8 +29,8 @@ $(window).bind("load", function() {
 		$("#mName").text($("#name").val());
 		$("#mCategory").text($("#category option:selected").text());
 		$("#mSupplier").text($("#supplier option:selected").text());
-		//$("#mCostsPrice").text("R$ " + $("#costsprice").val());
-		//$("#mSalesPrice").text("R$ " + $("#salesprice").val());
+		$("#mCostsPrice").text("R$ " + $("#costsprice").val());
+		$("#mSalesPrice").text("R$ " + $("#salesprice").val());
 		$("#mProductDesc").text($('#productdesc').val());
 		$("#mHeight").text($("#height").val() + " cm");
 		$("#mWidth").text($("#width").val() + " cm");

@@ -3,7 +3,7 @@
 <!-- content page -->
 <section class="bgwhite p-t-66 p-b-60">
 
-@if($valida)
+@if($valida == "comprou")
 <div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
 	<a href="{{ route('produtoDetalhe', $p->value('id')) }}">Voltar para detalhes do Produto</a>
 </div>
@@ -81,7 +81,7 @@
 		</div>
 
 	</div>
-@elseif($valida == "comprou")
+@elseif($valida == "naoComprou")
 <div class="bread-crumb bgwhite flex-w p-l-52 p-r-15 p-t-30 p-l-15-sm">
 	<a href="{{ route('produtoDetalhe', $p->value('id')) }}">Voltar para detalhes do Produto</a>
 </div>

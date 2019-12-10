@@ -129,7 +129,7 @@ class ClientController extends Controller
 	public function avaliacaoProduto($id)
 	{
 		if (isClient() == true) {
-			$valida = True;
+			$valida = "naoComprou";
 			$dados = ([
 				"idCli" => session('id'),
 				"idProd" => $id
@@ -140,7 +140,7 @@ class ClientController extends Controller
 					$valida = "avaliado";
 				}
 			}
-			var_dump(Client::compraProduto($dados), Client::verificaAvaliacao($dados));
+			//var_dump(Client::compraProduto($dados), Client::verificaAvaliacao($dados));
 			$p = Product::matchNodeId("Product", $id);
 			return view('avaliacao', ['p' => $p->getRecord(), 'valida' => $valida]);
 		} else {
@@ -162,5 +162,10 @@ class ClientController extends Controller
 			'idProd' => $request->input('idProd')
 		]);
 		Client::gravaAvaliacao($rel, $dados);
+		$para = (empty(session('id'))) ? 'null' : session('id');
+            $data = Order::matchNodeOrder($para);
+            $recom = Client::cosineSimilarity(Session('id'))->getRecord()->value('recom');
+            $dataRecom = Product::collaborativeFiltration($recom);
+        return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
 	}
 }

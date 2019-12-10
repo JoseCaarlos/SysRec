@@ -42,8 +42,9 @@
 	<link rel="stylesheet" type="text/css" href="/vendor/slick/slick.css">
 	<!--==Sweet Alert =================================================================================-->
 	<script type="text/javascript" src="/vendor/sweetalert/sweetalert.min.js"></script>
+	<script type="text/javascript" src="/js/jquery.mask.js"></script>
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-
+	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
