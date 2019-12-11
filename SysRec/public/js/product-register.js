@@ -15,10 +15,6 @@ $(document).ready(function($){
 	};
 	$('.sp_celphones').mask(SPMaskBehavior, spOptions);
 
-	$('#submit').click(function(){
-		/* when the submit button in the modal is clicked, submit the form */
-		$('.money').mask("####.##");
-	});
 });
 	
 /* Load JavaScript only after document */
