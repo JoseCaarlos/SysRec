@@ -84,5 +84,27 @@ class Product extends Neo4j
                 return Neo4j::conectar()->run($cypher_query);                         
         }
 
+        public static function produtosHome(){
+                $cypher_query = "match(p:Product) return p.path_file as file,p.name as name, p.sales_price as price, p.describ as describ, ID(p) as id ORDER BY p.name DESC";
+                return Neo4j::conectar()->run($cypher_query);                         
+        }
+
+        public static function updateProduto($id,$infos){
+
+                $cypher_query = "match(p:Product) where ID(p) = ".$id." set 
+                p.name = '".$infos['infos']['name']."' 
+                , p.category_id = ".$infos['infos']['category_id']."
+                , p.supplier_id = ".$infos['infos']['supplier_id']." 
+                , p.sales_price = ".$infos['infos']['sales_price']."
+                , p.describ = '".$infos['infos']['describ']."' 
+                , p.height = ".$infos['infos']['height']."
+                , p.width = ".$infos['infos']['width']."
+                , p.depth = ".$infos['infos']['depth']."
+                , p.weight = ".$infos['infos']['weight']."
+                , p.sac = '".$infos['infos']['sac']."'
+                , p.path_file = '".$infos['infos']['path_file']."'";
+                var_dump($cypher_query);
+                return Neo4j::conectar()->run($cypher_query);                         
+        }
 
 }

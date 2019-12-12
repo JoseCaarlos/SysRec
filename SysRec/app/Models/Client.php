@@ -61,4 +61,62 @@ class Client extends Neo4j
     }
 
 
+    public static function verificaCompraCliente($id)
+    {
+        $cypher_query = "match (c:Client),(c)-[r:PURCHASED]->(o:Order) where ID(c) = ".$id." and o.compra = 1 return c.first_name";
+        return Neo4j::conectar()->run($cypher_query)->firstRecordOrDefault(false) ? true : false;
+    }
+
+    public static function updateCliente($id,$infos){
+				
+        $cypher_query = "
+        MATCH (c:Client) WHERE ID(c) = ".$id."
+        SET  
+        c.gender =  '".$infos['infos']['gender']."'
+        , c.city =  '".$infos['infos']['city']."'
+        , c.birth_date =  '".$infos['infos']['birth_date']."'
+        , c.last_name = '".$infos['infos']['last_name']."'
+        , c.telephone = '".$infos['infos']['telephone']."'
+        , c.confirm_password = '".$infos['infos']['confirm_password']."'
+        , c.password = '".$infos['infos']['password']."'
+        , c.rg = '".$infos['infos']['rg']."'
+        , c.street = '".$infos['infos']['street']."'
+        , c.cpf = '".$infos['infos']['cpf']."'
+        , c.street_number = '".$infos['infos']['street_number']."'
+        , c.phone_number = '".$infos['infos']['phone_number']."'
+        , c.neighborhood = '".$infos['infos']['neighborhood']."'
+        , c.state = '".$infos['infos']['state']."'
+        , c.postal_code = '".$infos['infos']['postal_code']."'
+        , c.complement = '".$infos['infos']['complement']."'
+        , c.first_name = '".$infos['infos']['first_name']."'
+        , c.email = '".$infos['infos']['email']."' ";
+        return Neo4j::conectar()->run($cypher_query);                         
+}
+
+public static function consultaCliente($id)
+{
+        $cypher_query = " match(c:Client) where ID(c) = ".$id." return 
+        ID(c) as id,
+        c.first_name as first_name,
+        c.last_name as last_name,
+        c.gender as gender,
+        c.phone_number as phone_number,
+        c.telephone as telephone,
+        c.email as email,
+        c.cpf as cpf,
+        c.rg as rg,
+        c.password as password,
+        c.confirm_password as confirm_password,
+        c.birth_date as birth_date,
+        c.postal_code as postal_code,
+        c.street as street,
+        c.street_number as street_number,
+        c.neighborhood as neighborhood,
+        c.city as city,
+        c.state as state,
+        c.complement as complement ";
+        return Neo4j::conectar()->run($cypher_query);      
+}
+
+
 }

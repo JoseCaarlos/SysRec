@@ -3,7 +3,7 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6 p-b-30">
-					<form id="formfield" class="leave-comment" method="POST" action="">
+					<form id="formfield" class="leave-comment" method="POST" action="{{ route('supplierUpdate') }}">
 						<h4 class="m-text26 p-b-36 p-t-15">
 							Editar Fornecedor
 						</h4>
@@ -106,7 +106,7 @@
 
 						<!--Submit Button -->
 						<div class="w-size25">
-							<input class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="button" name="btn" value="Atualizar" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-default" />
+							<input class="flex-c-m size2 bg1 bo-rad-23 hov1 m-text3 trans-0-4" type="submit" name="btn" value="Atualizar" id="submitBtn" data-toggle="modal" data-target="#confirm-submit" class="btn btn-default" />
 
 							</button>
 						</div>

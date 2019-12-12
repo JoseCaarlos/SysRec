@@ -40,6 +40,7 @@ Route::get("/registrar","HomeController@register")->name("register");
 
 Route::post("/registrarCliente","ClientController@register")->name("clientRegister");
 
+
 // Rota Fornecedor
 Route::get("/registrarFornecedor","SupplierController@index")->name("supplier");
 
@@ -89,6 +90,10 @@ Route::get("/selecionarFornecedorParaEdicao", "SupplierController@selection")->n
 
     
 // Rota Cliente
+Route::any("/alterarCliente","clientController@update")->name("clientUpdate");
+
+Route::any("/editarCliente","clientController@consultaCliente")->name("updateClient");
+
 Route::any("/principal","clientController@autenticar")->name("clienteLogin");
 
 Route::get("/sairCliente","clientController@logout")->name("logoutCliente");
