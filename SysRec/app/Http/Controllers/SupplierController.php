@@ -65,5 +65,32 @@ class SupplierController extends Controller
 		return view('editSupplier', ["supplier" => $supplier->getRecord()]);
 									
 	}
+
+
+	public function updateSupplier(Request $request){
+		
+		$idForn = $request->get("idFor");
+
+		$data = ([
+			'infos' => [
+				'name' => $request->get("name"),
+				'cnpj' => $request->get('cnpj'),
+				'phone_number' => $request->get("phone_number"),
+				'telephone' => $request->get("telephone"),
+				'email' => $request->get("email"),
+				'postal_code' => $request->get("postal_code"),
+				'street' => $request->get("street"),
+				'street_number' => $request->get("street_number"),
+				'neighborhood' => $request->get("neighborhood"),
+				'city' => $request->get("city"),
+				'state' => $request->get("state"),
+				'complement' => $request->get("complement"),
+			]
+		]);
+
+		$supplier = Supplier::updateFornecedor($idForn, $data);
+		
+		return redirect('/admin');
+	}
 }
 

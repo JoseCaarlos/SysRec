@@ -48,12 +48,27 @@ class CategoryController extends Controller
 
 	public function findCategory($category){
 		$category = Category::matchNodeId("Category", $category);
-		return view('editCategory', ["category" => $category->getRecord()]);
+		return view('editCategory', ['category' => $category->getRecord()]);
 									
 	}
 
 	public function selection(){
 		$category = Category::matchNode("Category");
 		return view('selectionCategory',['category' => $category->getRecords()]);
+	}	
+	
+	public function edit(Request $request){
+
+		$idCat =  $request->get("idCat");
+		$data = ([
+			'infos' => [
+				'name' => $request->get("name"),
+				'user' => userSession(),
+				'create_date' => date("Y-m-d H:i:s"),
+			]
+		]);
+			
+		Category::updateCategoria($idCat, $data);		
+		return redirect('/admin');			
 	}
 }

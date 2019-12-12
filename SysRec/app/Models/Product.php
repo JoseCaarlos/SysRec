@@ -103,7 +103,8 @@ class Product extends Neo4j
                 , p.weight = ".$infos['infos']['weight']."
                 , p.sac = '".$infos['infos']['sac']."'
                 , p.path_file = '".$infos['infos']['path_file']."'";
-                var_dump($cypher_query);
+
+                //var_dump($cypher_query);
                 return Neo4j::conectar()->run($cypher_query);                         
         }
 

@@ -79,10 +79,13 @@ Route::get("/selecionarCategoriaParaEdicao", "CategoryController@selection")->na
  Route::get("/selecionarCategoriaParaEdicao/categoria/{category}", "CategoryController@findCategory");
 
   // Rota Category -> Modificar os dados desejados
-  Route::get("/editarCategorias", "CategoryController@edit")->name("categoryEdit");
+  Route::post("/editarCategorias", "CategoryController@edit")->name("categoryUpdate");
 
  // Rota Fornecedor -> Selecionar fornecedor
  Route::get("  /selecionarFornecedorParaEdicao/Fornecedor/{supplier}", "SupplierController@findSupplier");
+
+ // Rota Fornecedores -> Salvar no banco os dados cadastrados.
+Route::post("/alterarForncedor","SupplierController@updateSupplier")->name("supplierUpdate");
 
  // Rota Fornecedor -> Selecionar Fornecedor pra edição.
 Route::get("/selecionarFornecedorParaEdicao", "SupplierController@selection")->name("supplierSelection");

@@ -46,7 +46,7 @@ class ProductController extends Controller
 		}
 
 		Product::createNodeProductProperty("Product", $data, $rel);
-		return $data;
+		return redirect('/produtos');
 	}
 
 
@@ -137,6 +137,7 @@ class ProductController extends Controller
 				$data['infos']['path_file'] = $repo->saveImage($request->primaryImage, $request->get("name"), 'products', 1080);
 		}
 		Product::updateProduto($idProd,$data);
+		return redirect('/admin');
 	}
 
 }

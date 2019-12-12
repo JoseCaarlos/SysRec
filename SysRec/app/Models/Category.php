@@ -26,4 +26,16 @@ class Category extends Neo4j
         $result =  Neo4j::conectar()->run('MATCH (n:' . $name . ') where ID(n) = ' . $id . ' return ID(n) as id,n.name as name');
         return $result;
     }
+    public static function updateCategoria($id, $infos)
+    {
+            $cypher_query = "
+            MATCH (c:Category) WHERE ID(c) = ".$id."
+            SET  
+              c.name =  '".$infos['infos']['name']."'
+            , c.user =  '".$infos['infos']['user']."'
+            , c.create_date =  '".$infos['infos']['create_date']."' ";
+            
+            return Neo4j::conectar()->run($cypher_query);            
+    }
+
 }

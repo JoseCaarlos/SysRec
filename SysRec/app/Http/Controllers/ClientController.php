@@ -200,6 +200,7 @@ class ClientController extends Controller
 			]
 		]);
 		Client::updateCliente($idCli,$data);
+		return redirect('/panelCliente');
 	}
 
 	
