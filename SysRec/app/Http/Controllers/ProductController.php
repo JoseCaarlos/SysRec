@@ -123,15 +123,10 @@ class ProductController extends Controller
 				'depth' => $request->get("depth"),
 				'weight' => $request->get("weight"),
 				'sac' => $request->get("sac"),
-				'path_file' => ''
+				'path_file' => $request->get("file")
 			]
 		]);
-		$rel = ([
-			'idOne' => $request->get("category_id"),
-			'idTwo' => $request->get("supplier_id"),
-		]);
-		$id= 32;
-		$i=0;
+
 		if ($request->hasFile('primaryImage')) {
 			//foreach ($request->primaryImage as $image) {
 				$data['infos']['path_file'] = $repo->saveImage($request->primaryImage, $request->get("name"), 'products', 1080);
