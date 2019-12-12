@@ -168,4 +168,39 @@ class ClientController extends Controller
             $dataRecom = Product::collaborativeFiltration($recom);
         return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
 	}
+
+	public function consultaCliente(){
+		$cliente = Client::consultaCliente(session('id'));
+		return view('editClient', ['client' => $cliente->getRecord()]);
+	}
+
+	public function update(Request $request){
+
+		$idCli = $request->get("idClient");
+		$data = ([
+			'infos' => [
+				'first_name' => $request->get("first_name"),
+				'last_name' => $request->get("last_name"),
+				'gender' => $request->get("gender"),
+				'phone_number' => $request->get("phone_number"),
+				'telephone' => $request->get("telephone"),
+				'email' => $request->get("email"),
+				'cpf' => $request->get("cpf"),
+				'rg' => $request->get("rg"),
+				'password' => $request->get("password"),
+				'confirm_password' => $request->get("confirm_password"),
+				'birth_date' => $request->get("birth_date"),
+				'postal_code' => $request->get("postal_code"),
+				'street' => $request->get("street"),
+				'street_number' => $request->get("street_number"),
+				'neighborhood' => $request->get("neighborhood"),
+				'city' => $request->get("city"),
+				'state' => $request->get("state"),
+				'complement' => $request->get("complement"),
+			]
+		]);
+		Client::updateCliente($idCli,$data);
+	}
+
+	
 }

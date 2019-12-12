@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        if (!empty(session('id'))) {
+        if (!empty(session('id')) && Client::verificaCompraCliente(session('id'))) {
             $para = (empty(session('id'))) ? 'null' : session('id');
             $data = Order::matchNodeOrder($para);
             $recom = Client::cosineSimilarity(Session('id'))->getRecord()->value('recom');
@@ -21,7 +21,11 @@ class HomeController extends Controller
         }else{
             $para = (empty(session('id'))) ? 'null' : session('id');
             $data = Order::matchNodeOrder($para);
+            if(!Client::verificaCompraCliente(session('id'))){
+                $dataRecom = Product::produtosHome();
+            }else{
             $dataRecom = Product::bestSellers();
+            }
         }
         
         return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);

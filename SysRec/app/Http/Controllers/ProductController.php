@@ -107,7 +107,9 @@ class ProductController extends Controller
 									"supplier" => $supplier->getRecords()]);
 	}
 
-	public function update($request){
+	public function update(Request $request, ImageRepository $repo){
+
+		$idProd = $request->get("idProduct");
 		$data = ([
 			'infos' => [
 				'name' => $request->get("name"),
@@ -134,7 +136,7 @@ class ProductController extends Controller
 			//foreach ($request->primaryImage as $image) {
 				$data['infos']['path_file'] = $repo->saveImage($request->primaryImage, $request->get("name"), 'products', 1080);
 		}
-
+		Product::updateProduto($idProd,$data);
 	}
 
 }

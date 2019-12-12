@@ -16,6 +16,7 @@
 					<h5 m-text20 p-b-36 p-t-15>Compras</h5>
 					<ul>
 						<li style="padding-left:2em"><a href="{{ route('consultSale') }}">Consultar compras</a></li>
+						<li style="padding-left:2em"><a href="{{ route('updateClient') }}">Editar Perfil</a></li>
 					</ul>
 				<hr>
 				<ul>

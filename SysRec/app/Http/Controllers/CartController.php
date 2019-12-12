@@ -22,7 +22,6 @@ class CartController extends Controller
                 $dataRel = Product::bestSellers();
                 return view('cart', ['data' => null, 'dataRel' => $dataRel->getRecords()]);
             }
-            
         }else{
             $data = Order::matchNodeOrder('null');
             return view('client', ['data' => null]);
