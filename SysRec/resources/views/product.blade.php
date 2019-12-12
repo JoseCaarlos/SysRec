@@ -156,7 +156,7 @@
 										<div class="block2-btn-addcart w-size1 trans-0-4">
 											<!-- Button -->
 											<a href="{{ route ('cartId', $r->value('id')) }}" class="flex-c-m size1 bg4 bo-rad-23 hov1 s-text1 trans-0-4">
-												Comprar
+												ADD TO CART
 											</a>
 										</div>
 									</div>

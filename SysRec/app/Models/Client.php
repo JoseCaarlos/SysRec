@@ -57,7 +57,7 @@ class Client extends Neo4j
                             RETURN p1.first_name, ID(p2) as recom, xyDotProduct / (xLength * yLength) AS sim
                             ORDER BY sim DESC
                             LIMIT 1";
-        return Neo4j::conectar()->run($cypher_query);
+        return Neo4j::conectar()->run($cypher_query)->firstRecordOrDefault(false) ? Neo4j::conectar()->run($cypher_query) : false;;
     }
 
 
@@ -116,6 +116,11 @@ public static function consultaCliente($id)
         c.state as state,
         c.complement as complement ";
         return Neo4j::conectar()->run($cypher_query);      
+}
+
+public static function qtdClientes(){
+    $cypher_query = "match(c:Client),(c)-[r:PURCHASED]->(o:Order) where o.compra = 1  return COUNT(distinct(c.first_name)) as qtd";
+    return Neo4j::conectar()->run($cypher_query);
 }
 
 

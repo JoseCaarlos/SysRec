@@ -107,10 +107,11 @@
 					<span class="input-group-text">Upload</span>
 				</div>
 				<div class="custom-file">
-					<input type="file" name="primaryImage" value = "{{$product->value('file')}}" class="custom-file-input" id="inputGroupFile01">
+					<input type="file" name="primaryImage" value ="{{$product->value('file')}}" class="custom-file-input" id="inputGroupFile01">
 					<label class="custom-file-label" for="inputGroupFile01">Escolha o arquivo</label>
 				</div>
 			</div>
+			<input type="hidden" name="arquivo" value ="{{$product->value('file')}}">
 
 			<!-- Submit Button -->
 			<div class="w-size25">

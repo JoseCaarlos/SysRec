@@ -69,6 +69,16 @@ class Product extends Neo4j
             return Neo4j::conectar()->run($cypher_query);
         }
 
+                //Recomendação Filtragem Colaborativa
+        public static function baseCosine($id)
+                {
+                $cypher_query = "match(c:Client),(c)-[r:PURCHASED]->()-[:ORDERS]->(p3:Product) where ID(c) = ".$id." 
+                                        return distinct(p3.path_file) as file,p3.name as name, p3.sales_price as price, p3.describ as describ, ID(p3) as id";
+                    return Neo4j::conectar()->run($cypher_query);
+                }
+
+
+
         //Recomendação dos mais vendidos
         public static function bestSellers(){
                 $cypher_query = "match(p:Product),(o:Order),(o)-[r:ORDERS]->(p)

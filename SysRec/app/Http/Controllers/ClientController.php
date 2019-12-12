@@ -42,7 +42,7 @@ class ClientController extends Controller
 				'neighborhood' => $request->get("neighborhood"),
 				'city' => $request->get("city"),
 				'state' => $request->get("state"),
-				'complement' => $request->get("complement"),
+				'complement' => $request->get("complement")
 			]
 		]);
 
@@ -61,6 +61,7 @@ class ClientController extends Controller
 			$error = true;
 			return view('register', compact('error', 'data'));
 		} else {
+			
 			Client::createNodeProperty("Client", $data);
 			$success = true;
 			return view('register', compact('success'));
@@ -163,9 +164,12 @@ class ClientController extends Controller
 		]);
 		Client::gravaAvaliacao($rel, $dados);
 		$para = (empty(session('id'))) ? 'null' : session('id');
-            $data = Order::matchNodeOrder($para);
-            $recom = Client::cosineSimilarity(Session('id'))->getRecord()->value('recom');
-            $dataRecom = Product::collaborativeFiltration($recom);
+			$data = Order::matchNodeOrder($para);
+			$dataRecom = Product::produtosHome();
+			if(Client::qtdClientes()->getRecord()->value('qtd') > 2){
+				$recom = Client::cosineSimilarity(Session('id'))->getRecord()->value('recom');
+				$dataRecom = Product::baseCosine($recom);
+			}
         return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
 	}
 

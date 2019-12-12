@@ -15,17 +15,26 @@ class HomeController extends Controller
         if (!empty(session('id')) && Client::verificaCompraCliente(session('id'))) {
             $para = (empty(session('id'))) ? 'null' : session('id');
             $data = Order::matchNodeOrder($para);
-            $recom = Client::cosineSimilarity(Session('id'))->getRecord()->value('recom');
-            $dataRecom = Product::collaborativeFiltration($recom);
+            $dataRecom = Product::produtosHome();
+            if(Client::qtdClientes()->getRecord()->value('qtd') > 2){
+                $recom = Client::cosineSimilarity(Session('id'))->getRecord()->value('recom');
+                $dataRecom = Product::baseCosine($recom);
+            }
+            
             return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
         }else{
             $para = (empty(session('id'))) ? 'null' : session('id');
-            $data = Order::matchNodeOrder($para);
-            if(!Client::verificaCompraCliente(session('id'))){
+            if($para == 'null'){
+                $data = Order::matchNodeOrder($para);
                 $dataRecom = Product::produtosHome();
-            }else{
-            $dataRecom = Product::bestSellers();
+                return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
             }
+                $data = Order::matchNodeOrder($para);
+                if(!Client::verificaCompraCliente(session('id'))){
+                    $dataRecom = Product::produtosHome();
+                }else{
+                    $dataRecom = Product::bestSellers();
+                }
         }
         
         return view('home', ['data' => $data->getRecords(), 'dataRecom' => $dataRecom->getRecords()]);
